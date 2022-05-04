@@ -1,0 +1,50 @@
+.desktop {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+.taskbar {
+  background: $accent-color;
+  position: absolute;
+  inset: auto 0 0;
+  height: $taskbar-height;
+}
+
+.icons {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  color: white;
+
+  .icon {
+    margin: 2rem;
+    cursor: pointer;
+
+    &:hover {
+      color: pink;
+    }
+
+    &:active {
+      color: red;
+    }
+  }
+}
+
+.application {
+  width: 40vw;
+  height: 40vh;
+  position: absolute;
+  background: #fff;
+  z-index: 15;
+  inset: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.application_main_section {
+  background-color: aqua;
+  width: 100%;
+  height: 100%;
+}
