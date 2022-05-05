@@ -1,20 +1,20 @@
 import React, { useContext, useState } from "react";
 
-const UserInfoContext = React.createContext<{
+const MainContentContext = React.createContext<{
   application: any;
   setApplication: React.Dispatch<React.SetStateAction<any>>;
-} | null>(null);
+}>({ application: "", setApplication: () => {} });
 
-const UserDetailsProvider = ({ children }: { children: React.ReactNode }) => {
+const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
   const [application, setApplication] = useState();
 
   return (
-    <UserInfoContext.Provider value={{ application, setApplication }}>
+    <MainContentContext.Provider value={{ application, setApplication }}>
       {children}
-    </UserInfoContext.Provider>
+    </MainContentContext.Provider>
   );
 };
 
-export const useUserContext = () => useContext(UserInfoContext);
+export const useMainStore = () => useContext(MainContentContext);
 
-export default UserDetailsProvider;
+export default MainContentProvider;

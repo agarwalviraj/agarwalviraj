@@ -1,15 +1,16 @@
 import { NextPage } from "next";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Desktop, Taskbar, Icons, Application } from "../components";
+import { useMainStore } from "../store/MainStore";
 
 const Home: NextPage = () => {
-  const [active, setActive] = useState(false);
+  const { application, setApplication } = useMainStore();
   return (
     <div className="main">
       <Desktop />
       <Taskbar />
-      <Icons setActive={setActive} />
-      {active && <Application />}
+      <Icons setActive={setApplication} />
+      {application && <Application />}
     </div>
   );
 };
