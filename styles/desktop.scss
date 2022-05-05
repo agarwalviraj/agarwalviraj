@@ -22,6 +22,16 @@
   .icon {
     margin: 2rem;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      height: 2rem;
+      width: 2rem;
+      margin: auto;
+    }
 
     &:hover {
       color: pink;
@@ -41,12 +51,17 @@
   z-index: 15;
   inset: 50%;
   transform: translateX(-50%) translateY(-50%);
-  cursor: pointer;
+}
+
+.titlebar {
+  cursor: move;
+  background-color: yellow;
+  padding: 0.9rem;
 }
 
 .application_main_section {
   background-color: aqua;
   width: 100%;
-  height: 100%;
   cursor: auto;
+  padding: 2rem;
 }

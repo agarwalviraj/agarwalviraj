@@ -12,7 +12,7 @@ const Application = () => {
         var offsetY = e.clientY - parseInt(window.getComputedStyle(this).top);
 
         function mouseMoveHandler(e: MouseEvent) {
-          if (targetElement.classList.contains("application")) {
+          if (targetElement.classList.contains("titlebar")) {
             AppRef.current!.style.top = e.clientY - offsetY + "px";
             AppRef.current!.style.left = e.clientX - offsetX + "px";
           }
@@ -32,7 +32,7 @@ const Application = () => {
   return (
     <>
       <div className="application" ref={AppRef}>
-        Modal
+        <div className="titlebar">TitleBar</div>
         <div className="application_main_section">Test section</div>
       </div>
     </>

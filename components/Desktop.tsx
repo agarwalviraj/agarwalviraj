@@ -26,6 +26,7 @@ const Desktop = () => {
     }
     return () => window.removeEventListener("resize", updateSize);
   }, [canvasRef]);
+
   return (
     <div className="desktop">
       <canvas id="canvas" ref={canvasRef}></canvas>

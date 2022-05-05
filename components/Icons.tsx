@@ -1,17 +1,21 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { DiRedhat } from "react-icons/di";
 
 interface IconProps {
   setActive: Dispatch<SetStateAction<boolean>>;
 }
 
 const Icons = ({ setActive }: IconProps) => {
-  const [applications, setApplications] = useState([{ name: "About me" }]);
+  const [applications, setApplications] = useState([
+    { name: "About me", icon: DiRedhat },
+    { name: "Projects", icon: DiRedhat },
+  ]);
 
   const Icon = (app: any) => {
     return (
       <div className="icon" onClick={() => setActive((old) => !old)}>
-        {app.name} <br />
-        <span>Hello sub</span>
+        {app.icon()} <br />
+        <span>{app.name}</span>
       </div>
     );
   };
