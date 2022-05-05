@@ -5,14 +5,15 @@ const Application = () => {
 
   const handleMouseDown = function (e: MouseEvent) {
     const targetElement = e.target as Element;
-
-    var offsetX =
-      e.clientX - parseInt(window.getComputedStyle(AppRef.current!).left);
-    var offsetY =
-      e.clientY - parseInt(window.getComputedStyle(AppRef.current!).top);
+    if (AppRef.current) {
+      var offsetX =
+        e.clientX - parseInt(window.getComputedStyle(AppRef.current!).left);
+      var offsetY =
+        e.clientY - parseInt(window.getComputedStyle(AppRef.current!).top);
+    }
 
     function mouseMoveHandler(e: MouseEvent) {
-      if (targetElement.classList.contains("titlebar")) {
+      if (targetElement.classList.contains("titlebar") && AppRef.current) {
         AppRef.current!.style.top = e.clientY - offsetY + "px";
         AppRef.current!.style.left = e.clientX - offsetX + "px";
       }
@@ -28,11 +29,14 @@ const Application = () => {
   };
 
   useEffect(() => {
-    if (AppRef) {
-      AppRef.current!.addEventListener("mousedown", handleMouseDown);
+    if (AppRef.current) {
+      AppRef.current.addEventListener("mousedown", handleMouseDown);
     }
-    return () =>
-      AppRef.current!.removeEventListener("mousedown", handleMouseDown);
+    return () => {
+      if (AppRef.current) {
+        AppRef.current!.removeEventListener("mousedown", handleMouseDown);
+      }
+    };
   }, []);
 
   return (
