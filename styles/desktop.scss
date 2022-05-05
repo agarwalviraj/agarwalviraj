@@ -34,11 +34,11 @@
     }
 
     &:hover {
-      color: pink;
+      color: $hover-color;
     }
 
     &:active {
-      color: red;
+      color: $focus-color;
     }
   }
 }
@@ -46,21 +46,21 @@
 .application {
   width: 40vw;
   height: 40vh;
+  z-index: 15;
+
   position: absolute;
   background: #fff;
-  z-index: 15;
   inset: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
 
 .titlebar {
   cursor: move;
-  background-color: yellow;
-  padding: 0.9rem;
+  background-color: $titlebar-background;
+  padding: 1rem;
 }
 
 .application_main_section {
-  background-color: aqua;
   width: 100%;
   cursor: auto;
   padding: 2rem;
