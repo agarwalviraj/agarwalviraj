@@ -51,7 +51,6 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
     <MainContentContext.Provider
       value={{ allApplications, setAllApplications, active, setActive }}
     >
-      {console.log(active)}
       {children}
     </MainContentContext.Provider>
   );
