@@ -6,7 +6,7 @@ import { GoInfo } from "react-icons/go";
 import { IoIosContact } from "react-icons/io";
 import { Wallpaper, Taskbar, Icons, Application } from "../components";
 import { About, ContactMe, Projects, TechStack } from "../components/sections";
-import { MainContentContext, useMainStore } from "../store/MainStore";
+import { MainContentContext, slugs, useMainStore } from "../store/MainStore";
 
 //System Tray
 //Task Manager
@@ -21,7 +21,12 @@ const Home: NextPage = () => {
       <Taskbar />
       <Icons />
       {allApplications.map((app) => {
-        if (app.isOpen) return app.element();
+        if (app.isOpen) {
+          if (app.slug == slugs.ABOUT) return <About />;
+          if (app.slug == slugs.PROJECTS) return <Projects />;
+          if (app.slug == slugs.TECHSTACK) return <TechStack />;
+          if (app.slug == slugs.CONTACTME) return <ContactMe />;
+        }
       })}
     </div>
   );

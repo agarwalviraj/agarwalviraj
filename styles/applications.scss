@@ -7,16 +7,26 @@
   background: #fff;
   inset: 50%;
   transform: translateX(-50%) translateY(-50%);
+
+  border: 1px solid black;
+
+  &:active {
+    z-index: 20;
+  }
 }
 
 .titlebar {
   cursor: move;
   background-color: $titlebar-background;
   padding: 1rem;
+  height: 20%;
+  max-height: 20%;
 }
 
 .application_main_section {
   width: 100%;
   cursor: auto;
   padding: 2rem;
+  max-height: 80%;
+  overflow: scroll;
 }

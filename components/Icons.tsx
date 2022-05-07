@@ -1,13 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from "react";
-
-import {
-  Application,
-  MainContentContext,
-  useMainStore,
-} from "../store/MainStore";
-
-import { GoInfo } from "react-icons/go";
-import { About, Projects, ContactMe, TechStack } from "../components/sections";
+import { Application, useMainStore } from "../store/MainStore";
 
 interface IconProps {
   app: Application;
@@ -15,17 +6,17 @@ interface IconProps {
 }
 
 const Icons = () => {
-  const { allApplications, setAllApplications } = useMainStore()!;
+  const { allApplications, setAllApplications, setActive } = useMainStore()!;
 
   const Icon = ({ app, id }: IconProps) => {
     return (
       <div
         className="icon"
         onClick={() => {
-          const test = allApplications;
-          const open = test[id].isOpen;
-          test[id].isOpen = !open;
-          setAllApplications([...test]);
+          const updatedApp = allApplications;
+          updatedApp[id].isOpen = !updatedApp[id].isOpen;
+          setActive(allApplications[id].slug);
+          setAllApplications([...updatedApp]);
         }}
       >
         {<app.icon />} <br />

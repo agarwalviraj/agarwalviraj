@@ -1,8 +1,13 @@
 import React from "react";
 import { Application } from "..";
+import { useMainStore, slugs } from "../../store/MainStore";
 
 const TechStack = () => {
-  return <Application>Tech Stack</Application>;
+  const { allApplications } = useMainStore()!;
+  const currentId = allApplications.findIndex(
+    (obj) => obj.slug == slugs.TECHSTACK,
+  );
+  return <Application currentId={currentId}>Tech Stack</Application>;
 };
 
 export default TechStack;

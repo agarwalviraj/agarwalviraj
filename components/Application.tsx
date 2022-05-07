@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useMainStore } from "../store/MainStore";
 
 interface AppProps {
-  children: any;
+  children: React.ReactChild;
+  currentId: number;
 }
 
-const Application = ({ children }: AppProps) => {
+const Application = ({ children, currentId }: AppProps) => {
   const AppRef = useRef<HTMLDivElement>(null);
+  const { allApplications, setActive, active } = useMainStore()!;
 
   const handleMouseDown = function (e: MouseEvent) {
     const targetElement = e.target as Element;
@@ -43,11 +46,30 @@ const Application = ({ children }: AppProps) => {
     };
   }, []);
 
+  console.log(
+    active,
+    currentId,
+    allApplications[currentId].slug,
+    allApplications[currentId].slug == active,
+  );
+
   return (
     <>
-      <div className="application" ref={AppRef}>
-        <div className="titlebar">TitleBar 2</div>
-        {children}
+      <div
+        className="application"
+        ref={AppRef}
+        style={{
+          zIndex: allApplications[currentId].slug == active ? 10 : 0,
+        }}
+      >
+        <div
+          className="titlebar"
+          onClick={() => setActive(allApplications[currentId].slug)}
+          onMouseDown={() => setActive(allApplications[currentId].slug)}
+        >
+          TitleBar 2
+        </div>
+        <div className="application_main_section">{children}</div>
       </div>
     </>
   );
