@@ -1,0 +1,22 @@
+.application {
+  width: 40vw;
+  height: 40vh;
+  z-index: 15;
+
+  position: absolute;
+  background: #fff;
+  inset: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.titlebar {
+  cursor: move;
+  background-color: $titlebar-background;
+  padding: 1rem;
+}
+
+.application_main_section {
+  width: 100%;
+  cursor: auto;
+  padding: 2rem;
+}

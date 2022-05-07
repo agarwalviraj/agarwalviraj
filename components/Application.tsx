@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from "react";
 
-const Application = () => {
+interface AppProps {
+  children: any;
+}
+
+const Application = ({ children }: AppProps) => {
   const AppRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = function (e: MouseEvent) {
@@ -42,8 +46,8 @@ const Application = () => {
   return (
     <>
       <div className="application" ref={AppRef}>
-        <div className="titlebar">TitleBar</div>
-        <div className="application_main_section">Test section</div>
+        <div className="titlebar">TitleBar 2</div>
+        {children}
       </div>
     </>
   );

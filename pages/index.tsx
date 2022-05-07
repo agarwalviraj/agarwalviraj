@@ -1,16 +1,28 @@
 import { NextPage } from "next";
 import { useContext, useState } from "react";
-import { Desktop, Taskbar, Icons, Application } from "../components";
-import { useMainStore } from "../store/MainStore";
+import { AiOutlineFolderOpen } from "react-icons/ai";
+import { BsStack } from "react-icons/bs";
+import { GoInfo } from "react-icons/go";
+import { IoIosContact } from "react-icons/io";
+import { Wallpaper, Taskbar, Icons, Application } from "../components";
+import { About, ContactMe, Projects, TechStack } from "../components/sections";
+import { MainContentContext, useMainStore } from "../store/MainStore";
+
+//System Tray
+//Task Manager
+//Settings
 
 const Home: NextPage = () => {
-  const { application, setApplication } = useMainStore();
+  const { allApplications } = useContext(MainContentContext)!;
+
   return (
     <div className="main">
-      <Desktop />
+      <Wallpaper />
       <Taskbar />
-      <Icons setActive={setApplication} />
-      {application && <Application />}
+      <Icons />
+      {allApplications.map((app) => {
+        if (app.isOpen) return app.element();
+      })}
     </div>
   );
 };

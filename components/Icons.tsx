@@ -1,20 +1,34 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { DiRedhat } from "react-icons/di";
+import React, { Dispatch, SetStateAction, useContext, useState } from "react";
+
+import {
+  Application,
+  MainContentContext,
+  useMainStore,
+} from "../store/MainStore";
+
+import { GoInfo } from "react-icons/go";
+import { About, Projects, ContactMe, TechStack } from "../components/sections";
 
 interface IconProps {
-  setActive: Dispatch<SetStateAction<boolean>>;
+  app: Application;
+  id: number;
 }
 
-const Icons = ({ setActive }: IconProps) => {
-  const [applications, setApplications] = useState([
-    { name: "About me", icon: DiRedhat },
-    { name: "Projects", icon: DiRedhat },
-  ]);
+const Icons = () => {
+  const { allApplications, setAllApplications } = useMainStore()!;
 
-  const Icon = (app: any) => {
+  const Icon = ({ app, id }: IconProps) => {
     return (
-      <div className="icon" onClick={() => setActive((old) => !old)}>
-        {app.icon()} <br />
+      <div
+        className="icon"
+        onClick={() => {
+          const test = allApplications;
+          const open = test[id].isOpen;
+          test[id].isOpen = !open;
+          setAllApplications([...test]);
+        }}
+      >
+        {<app.icon />} <br />
         <span>{app.name}</span>
       </div>
     );
@@ -22,8 +36,8 @@ const Icons = ({ setActive }: IconProps) => {
 
   return (
     <div className="icons">
-      {applications.map((app, idx) => (
-        <Icon {...app} />
+      {allApplications.map((app, idx: number) => (
+        <Icon app={app} id={idx} />
       ))}
     </div>
   );
