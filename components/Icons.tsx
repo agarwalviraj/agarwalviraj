@@ -27,8 +27,8 @@ const Icons = () => {
 
   return (
     <div className="icons">
-      {allApplications.map((app, idx: number) => (
-        <Icon app={app} id={idx} />
+      {allApplications.map((app, idx) => (
+        <Icon key={idx} app={app} id={idx} />
       ))}
     </div>
   );

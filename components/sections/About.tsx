@@ -1,5 +1,5 @@
 import React from "react";
-import { Application } from "../";
+import Application from "../application";
 import { slugs, useMainStore } from "../../store/MainStore";
 
 const About = () => {

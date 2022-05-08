@@ -1,5 +1,5 @@
 import React from "react";
-import { Application } from "..";
+import Application from "../application";
 import { useMainStore, slugs } from "../../store/MainStore";
 
 const TechStack = () => {

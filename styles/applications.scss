@@ -9,18 +9,35 @@
   transform: translateX(-50%) translateY(-50%);
 
   border: 1px solid black;
-
-  &:active {
-    z-index: 20;
-  }
 }
 
 .titlebar {
   cursor: move;
   background-color: $titlebar-background;
+
+  display: flex;
+  justify-content: space-between;
+
   padding: 1rem;
   height: 20%;
   max-height: 20%;
+  color: white;
+
+  .titlebar-buttons {
+    display: flex;
+    gap: 0.25rem;
+    * {
+      cursor: pointer;
+      padding: 0.25rem;
+      width: 1rem;
+      height: 1rem;
+      aspect-ratio: 1;
+      border-radius: 100%;
+      &:hover {
+        background-color: red;
+      }
+    }
+  }
 }
 
 .application_main_section {

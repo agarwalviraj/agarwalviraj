@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
-import { GoInfo } from "react-icons/go";
-import { AiOutlineFolderOpen } from "react-icons/ai";
-import { IoIosContact } from "react-icons/io";
-import { BsStack } from "react-icons/bs";
 import { IconType } from "react-icons";
-import { About, Projects, ContactMe, TechStack } from "../components/sections";
+import { AiOutlineFolderOpen } from "react-icons/ai";
+import { BsStack } from "react-icons/bs";
+import { GoInfo } from "react-icons/go";
+import { IoIosContact } from "react-icons/io";
 
 export enum slugs {
   ABOUT = "about",
