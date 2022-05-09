@@ -1,6 +1,7 @@
 import React from "react";
 import Application from "../application";
-import { useMainStore, slugs } from "../../store/MainStore";
+import { useMainStore } from "../../store/MainStore";
+import { slugs } from "../../utils/types";
 
 const TechStack = () => {
   const { allApplications } = useMainStore()!;

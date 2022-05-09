@@ -1,7 +1,9 @@
-import { Application, useMainStore } from "../store/MainStore";
+import { useMainStore } from "../store/MainStore";
+import { close } from "../utils/actions";
+import { ApplicationType } from "../utils/types";
 
 interface IconProps {
-  app: Application;
+  app: ApplicationType;
   id: number;
 }
 
@@ -12,12 +14,9 @@ const Icons = () => {
     return (
       <div
         className="icon"
-        onClick={() => {
-          const updatedApp = allApplications;
-          updatedApp[id].isOpen = !updatedApp[id].isOpen;
-          setActive(allApplications[id].slug);
-          setAllApplications([...updatedApp]);
-        }}
+        onClick={() =>
+          close(allApplications, id, setActive, setAllApplications)
+        }
       >
         {<app.icon />} <br />
         <span>{app.name}</span>

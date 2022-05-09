@@ -1,7 +1,8 @@
 import { NextPage } from "next";
 import { Icons, Taskbar, Wallpaper } from "../components";
 import { About, ContactMe, Projects, TechStack } from "../components/sections";
-import { slugs, useMainStore } from "../store/MainStore";
+import { useMainStore } from "../store/MainStore";
+import { slugs } from "../utils/types";
 
 //System Tray
 //Task Manager

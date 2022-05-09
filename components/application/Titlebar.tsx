@@ -1,6 +1,7 @@
 import { useMainStore } from "../../store/MainStore";
 import { FiMaximize2, FiMinimize2 } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
+import { close } from "../../utils/actions";
 
 interface TitlebarProps {
   currentId: number;
@@ -17,17 +18,15 @@ const Titlebar = ({ currentId }: TitlebarProps) => {
     >
       <div className="titlebar-buttons">
         <AiOutlineClose
-          onClick={() => {
-            const updatedApp = allApplications;
-            updatedApp[currentId].isOpen = !updatedApp[currentId].isOpen;
-            setActive(allApplications[currentId].slug);
-            setAllApplications([...updatedApp]);
-          }}
+          className="close"
+          onClick={() =>
+            close(allApplications, currentId, setActive, setAllApplications)
+          }
         />
-        <FiMaximize2 />
-        <FiMinimize2 />
+        <FiMinimize2 className="minimize" />
+        <FiMaximize2 className="maximize" />
       </div>
-      <span>{allApplications[currentId].name}</span>
+      <span className="title">{allApplications[currentId].name}</span>
       <div></div>
     </div>
   );
