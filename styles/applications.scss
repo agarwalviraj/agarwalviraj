@@ -1,14 +1,15 @@
 .application {
-  width: 40vw;
-  height: 40vh;
+  // width: 40vw;
+  // height: 40vh;
   z-index: 15;
 
   position: absolute;
   background: #fff;
   inset: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  // transform: translateX(50%) translateY(-100%);
 
   border: 1px solid black;
+  border-radius: 1.25rem;
 
   display: flex;
   flex-direction: column;
@@ -22,6 +23,9 @@
 
     color: white;
     padding: 0.45rem;
+
+    border-top-left-radius: 1.25rem;
+    border-top-right-radius: 1.25rem;
 
     .titlebar-buttons {
       display: flex;

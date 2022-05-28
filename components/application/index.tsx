@@ -11,6 +11,8 @@ const Application = ({ children, currentId }: AppProps) => {
   const AppRef = useRef<HTMLDivElement>(null);
   const { allApplications, active } = useMainStore()!;
 
+  const maximizedStyle = {};
+
   const handleMouseDown = function (e: MouseEvent) {
     const targetElement = e.target as Element;
     if (AppRef.current) {
@@ -21,7 +23,11 @@ const Application = ({ children, currentId }: AppProps) => {
     }
 
     function mouseMoveHandler(e: MouseEvent) {
-      if (targetElement.classList.contains("titlebar") && AppRef.current) {
+      if (
+        !allApplications[currentId].isMaximized &&
+        targetElement.classList.contains("titlebar") &&
+        AppRef.current
+      ) {
         AppRef.current!.style.top = e.clientY - offsetY + "px";
         AppRef.current!.style.left = e.clientX - offsetX + "px";
       }
@@ -54,6 +60,11 @@ const Application = ({ children, currentId }: AppProps) => {
         ref={AppRef}
         style={{
           zIndex: allApplications[currentId].slug == active ? 10 : 5,
+          inset: allApplications[currentId].isMaximized
+            ? "0 0 2.7rem 0"
+            : "40%",
+          height: allApplications[currentId].isMaximized ? "auto" : "40vh",
+          width: allApplications[currentId].isMaximized ? "auto" : "40vw",
         }}
       >
         <Titlebar currentId={currentId} />

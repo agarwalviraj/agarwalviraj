@@ -4,6 +4,12 @@
   overflow: hidden;
   max-height: 100vh;
   max-width: 100vw;
+
+  min-height: 100vh;
+
+  background-image: url("../public/assets/wallpaper.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .taskbar {
