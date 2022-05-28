@@ -6,6 +6,7 @@
   max-width: 100vw;
 
   min-height: 100vh;
+  min-width: 100vw;
 
   background-image: url("../public/assets/wallpaper.png");
   background-size: cover;
@@ -46,6 +47,25 @@
 
     &:active {
       color: $focus-color;
+    }
+  }
+}
+@media (max-width: $breakpoint-tablet) {
+  .icons {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+    top: auto;
+    bottom: 0;
+
+    margin: 0;
+    margin-bottom: calc($taskbar-height + 0.25rem);
+    .icon {
+      margin: 0;
     }
   }
 }

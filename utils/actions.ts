@@ -19,12 +19,8 @@ export function maximize(
   setActive: Dispatch<SetStateAction<slugs | undefined>>,
   setAllApplications: Dispatch<SetStateAction<ApplicationType[]>>,
 ) {
-  console.log("maximize running");
-
   const updatedApp = allApplications;
   updatedApp[currentId].isMaximized = !updatedApp[currentId].isMaximized;
   setActive(allApplications[currentId].slug);
   setAllApplications([...updatedApp]);
-
-  console.log(updatedApp);
 }

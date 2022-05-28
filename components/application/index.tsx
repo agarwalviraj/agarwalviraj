@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMainStore } from "../../store/MainStore";
 import Titlebar from "./Titlebar";
 
@@ -10,15 +10,18 @@ interface AppProps {
 const Application = ({ children, currentId }: AppProps) => {
   const AppRef = useRef<HTMLDivElement>(null);
   const { allApplications, active } = useMainStore()!;
+  const [onMobile, setOnMobile] = useState(false);
 
   const maximizedStyle = {};
 
   const handleMouseDown = function (e: MouseEvent) {
     const targetElement = e.target as Element;
+    let offsetX = 0,
+      offsetY = 0;
     if (AppRef.current) {
-      var offsetX =
+      offsetX =
         e.clientX - parseInt(window.getComputedStyle(AppRef.current!).left);
-      var offsetY =
+      offsetY =
         e.clientY - parseInt(window.getComputedStyle(AppRef.current!).top);
     }
 
@@ -26,6 +29,12 @@ const Application = ({ children, currentId }: AppProps) => {
       if (
         !allApplications[currentId].isMaximized &&
         targetElement.classList.contains("titlebar") &&
+        e.clientX - offsetX > 0 &&
+        e.clientX - offsetX + AppRef.current!.clientWidth + 4 <
+          window.innerWidth &&
+        e.clientY - offsetY > 0 &&
+        e.clientY - offsetY + AppRef.current!.clientHeight + 4 <
+          window.innerHeight &&
         AppRef.current
       ) {
         AppRef.current!.style.top = e.clientY - offsetY + "px";
@@ -51,6 +60,16 @@ const Application = ({ children, currentId }: AppProps) => {
         AppRef.current!.removeEventListener("mousedown", handleMouseDown);
       }
     };
+  }, [AppRef]);
+
+  useEffect(() => {
+    const updateMobile = () => {
+      setOnMobile(window.innerWidth < 768);
+    };
+    updateMobile();
+
+    window.addEventListener("resize", updateMobile);
+    return () => window.removeEventListener("resize", updateMobile);
   }, []);
 
   return (
@@ -58,16 +77,24 @@ const Application = ({ children, currentId }: AppProps) => {
       <div
         className="application"
         ref={AppRef}
-        style={{
-          zIndex: allApplications[currentId].slug == active ? 10 : 5,
-          inset: allApplications[currentId].isMaximized
-            ? "0 0 2.7rem 0"
-            : "40%",
-          height: allApplications[currentId].isMaximized ? "auto" : "40vh",
-          width: allApplications[currentId].isMaximized ? "auto" : "40vw",
-        }}
+        style={
+          !onMobile
+            ? {
+                zIndex: allApplications[currentId].slug == active ? 10 : 5,
+                inset: allApplications[currentId].isMaximized
+                  ? "0 0 2.7rem 0"
+                  : "40%",
+                height: allApplications[currentId].isMaximized
+                  ? "auto"
+                  : "40vh",
+                width: allApplications[currentId].isMaximized ? "auto" : "40vw",
+              }
+            : {
+                inset: "0 0 2.7rem 0",
+              }
+        }
       >
-        <Titlebar currentId={currentId} />
+        {!onMobile && <Titlebar currentId={currentId} />}
         <div className="application_main_section">{children}</div>
       </div>
     </>

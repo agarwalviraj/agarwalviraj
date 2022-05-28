@@ -2,6 +2,7 @@ $font-stack: Helvetica, sans-serif;
 $accent-color: #333;
 
 $taskbar-height: 2.7rem;
+$window-border-radius: 1.25rem;
 
 $hover-color: #9df4ff;
 $focus-color: #0099ff;
@@ -11,3 +12,5 @@ $titlebar-background: #333;
 $close-button: #fd5f56;
 $minimize-button: #ffbd2b;
 $maximize-button: #2cc941;
+
+$breakpoint-tablet: 768px;
