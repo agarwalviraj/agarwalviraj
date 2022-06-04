@@ -1,6 +1,8 @@
 .application {
-  // width: 40vw;
-  // height: 40vh;
+  // width: 0;
+  // height: 0;
+
+  transition: width height 4s linear;
   z-index: 15;
 
   position: absolute;
@@ -8,7 +10,7 @@
   inset: 50%;
   // transform: translateX(50%) translateY(-100%);
 
-  border: 2px solid black;
+  // border: 2px solid black;
   border-radius: $window-border-radius;
 
   display: flex;
@@ -69,8 +71,8 @@
 
   .application_main_section {
     width: 100%;
+
     cursor: auto;
-    padding: 2rem;
     overflow: scroll;
     flex-grow: 1;
   }

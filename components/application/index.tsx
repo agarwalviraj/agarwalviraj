@@ -54,13 +54,21 @@ const Application = ({ children, currentId }: AppProps) => {
   useEffect(() => {
     if (AppRef.current) {
       AppRef.current.addEventListener("mousedown", handleMouseDown);
+      if (!onMobile) {
+        AppRef.current!.style.width = allApplications[currentId].isMaximized
+          ? "auto"
+          : "768px";
+        AppRef.current!.style.height = allApplications[currentId].isMaximized
+          ? "auto"
+          : "432px";
+      }
     }
     return () => {
       if (AppRef.current) {
         AppRef.current!.removeEventListener("mousedown", handleMouseDown);
       }
     };
-  }, [AppRef]);
+  }, [AppRef, allApplications]);
 
   useEffect(() => {
     const updateMobile = () => {
@@ -84,10 +92,12 @@ const Application = ({ children, currentId }: AppProps) => {
                 inset: allApplications[currentId].isMaximized
                   ? "0 0 2.7rem 0"
                   : "40%",
-                height: allApplications[currentId].isMaximized
-                  ? "auto"
-                  : "40vh",
-                width: allApplications[currentId].isMaximized ? "auto" : "40vw",
+                // height: allApplications[currentId].isMaximized
+                //   ? "auto"
+                //   : "432px",
+                // width: allApplications[currentId].isMaximized
+                //   ? "auto"
+                //   : "768px",
               }
             : {
                 inset: "0 0 2.7rem 0",

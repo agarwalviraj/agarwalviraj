@@ -1,17 +1,19 @@
 @import "./variables.scss";
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
   box-sizing: border-box;
-  letter-spacing: 0em;
 
+  font: inherit;
+  letter-spacing: 0em;
+  font-size: 100%;
   font-family: "Poppins", sans-serif;
+  font-weight: 400;
 }
 
 article,
@@ -67,4 +69,30 @@ table {
   position: relative;
 }
 
+h1 {
+  font-size: $step-5;
+  font-weight: 900;
+}
+h2 {
+  font-size: $step-4;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: $step-3;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: $step-2;
+}
+
+p {
+  font-size: $step--1;
+}
+span {
+  font-size: $step--2;
+}
+
 @import "./desktop.scss";
+@import "./sections";

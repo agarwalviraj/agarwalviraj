@@ -1,5 +1,14 @@
+import { useMainStore } from "../store/MainStore";
+
 const Taskbar = () => {
-  return <div className="taskbar"></div>;
+  const { closeAll } = useMainStore()!;
+  return (
+    <div className="taskbar">
+      <div className="home-button" onClick={closeAll}>
+        o
+      </div>
+    </div>
+  );
 };
 
 export default Taskbar;

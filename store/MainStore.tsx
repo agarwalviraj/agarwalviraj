@@ -12,6 +12,8 @@ export const MainContentContext = React.createContext<{
 
   active: slugs | undefined;
   setActive: React.Dispatch<React.SetStateAction<slugs | undefined>>;
+
+  closeAll: () => void;
 } | null>(null);
 
 const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
@@ -23,7 +25,7 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
       icon: GoInfo,
       slug: slugs.ABOUT,
       isOpen: false,
-      isMaximized: false,
+      isMaximized: true,
       isMinimized: false,
     },
     {
@@ -31,7 +33,7 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
       icon: AiOutlineFolderOpen,
       slug: slugs.PROJECTS,
       isOpen: false,
-      isMaximized: false,
+      isMaximized: true,
       isMinimized: false,
     },
     {
@@ -39,7 +41,7 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
       icon: BsStack,
       slug: slugs.TECHSTACK,
       isOpen: false,
-      isMaximized: false,
+      isMaximized: true,
       isMinimized: false,
     },
     {
@@ -47,14 +49,30 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
       icon: IoIosContact,
       slug: slugs.CONTACTME,
       isOpen: false,
-      isMaximized: false,
+      isMaximized: true,
       isMinimized: false,
     },
   ]);
 
+  const closeAll = () => {
+    setAllApplications((oldApps) => {
+      const newApps = oldApps.map((app) => {
+        app.isOpen = false;
+        return app;
+      });
+      return newApps;
+    });
+  };
+
   return (
     <MainContentContext.Provider
-      value={{ allApplications, setAllApplications, active, setActive }}
+      value={{
+        allApplications,
+        setAllApplications,
+        active,
+        setActive,
+        closeAll,
+      }}
     >
       {children}
     </MainContentContext.Provider>

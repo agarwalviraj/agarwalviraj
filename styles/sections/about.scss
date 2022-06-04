@@ -1,0 +1,24 @@
+.about-me {
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    h1,
+    h3,
+    p {
+      width: clamp(30%, 60%, 680px);
+    }
+  }
+}
+@media screen and (max-width: $breakpoint-tablet) {
+  .about-me {
+    .text {
+      h1,
+      h3,
+      p {
+        width: 100%;
+      }
+    }
+  }
+}
