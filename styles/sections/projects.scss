@@ -1,0 +1,23 @@
+.projects {
+  .all-projects {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1.25rem;
+
+    .project {
+      width: clamp(300px, 27%, 600px);
+      text-align: center;
+      background: #000;
+      padding: 1rem;
+      border-radius: $window-border-radius;
+      cursor: pointer;
+
+      img {
+        border-radius: $window-border-radius;
+      }
+    }
+  }
+}
