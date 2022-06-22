@@ -6,17 +6,26 @@
     justify-content: center;
     margin-top: 2rem;
     gap: 1.25rem;
+    padding: 2rem;
 
     .project {
-      width: clamp(300px, 27%, 600px);
+      width: clamp(420px, 27%, 600px);
       text-align: center;
-      background: #000;
+      background: #004055;
       padding: 1rem;
       border-radius: $window-border-radius;
       cursor: pointer;
+      transition: transform 0.3s ease-out;
 
       img {
         border-radius: $window-border-radius;
+      }
+      h4 {
+        color: black;
+      }
+
+      &:hover {
+        transform: scale(1.05);
       }
     }
   }

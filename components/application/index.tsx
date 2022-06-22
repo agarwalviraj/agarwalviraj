@@ -54,25 +54,29 @@ const Application = ({ children, currentId }: AppProps) => {
   useEffect(() => {
     if (AppRef.current) {
       AppRef.current.addEventListener("mousedown", handleMouseDown);
-      if (!onMobile) {
-        AppRef.current!.style.width = allApplications[currentId].isMaximized
-          ? "auto"
-          : "768px";
-        AppRef.current!.style.height = allApplications[currentId].isMaximized
-          ? "auto"
-          : "432px";
-      }
+
+      AppRef.current.style.width =
+        allApplications[currentId].isMaximized || onMobile ? "auto" : "70vw";
+      AppRef.current.style.height =
+        allApplications[currentId].isMaximized || onMobile ? "auto" : "70vh";
     }
     return () => {
       if (AppRef.current) {
         AppRef.current!.removeEventListener("mousedown", handleMouseDown);
       }
     };
-  }, [AppRef, allApplications]);
+  }, [AppRef, allApplications, onMobile]);
 
   useEffect(() => {
     const updateMobile = () => {
       setOnMobile(window.innerWidth < 768);
+      if (
+        !allApplications[currentId].isMaximized &&
+        AppRef.current &&
+        window.innerWidth > 768
+      ) {
+        AppRef.current.style.inset = "10%";
+      }
     };
     updateMobile();
 
@@ -91,7 +95,7 @@ const Application = ({ children, currentId }: AppProps) => {
                 zIndex: allApplications[currentId].slug == active ? 10 : 5,
                 inset: allApplications[currentId].isMaximized
                   ? "0 0 2.7rem 0"
-                  : "40%",
+                  : "10%",
                 // height: allApplications[currentId].isMaximized
                 //   ? "auto"
                 //   : "432px",
