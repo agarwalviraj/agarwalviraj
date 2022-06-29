@@ -18,6 +18,24 @@
   position: absolute;
   inset: auto 0 0;
   height: $taskbar-height;
+  .taskbar-icons {
+    display: flex;
+    color: white;
+    height: 100%;
+    gap: 0.6rem;
+    align-items: center;
+    margin: 0 0.5rem;
+
+    .active {
+      background-color: black;
+    }
+
+    svg {
+      height: 100%;
+      width: 2.2rem;
+      padding: 0.4rem;
+    }
+  }
   .home-button {
     display: none;
   }
@@ -72,6 +90,10 @@
     }
   }
   .taskbar {
+    .taskbar-icons {
+      display: none;
+    }
+
     .home-button {
       display: flex;
       width: 100%;

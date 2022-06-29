@@ -16,9 +16,14 @@ const About = () => {
           <h3>I develop for the web.</h3>
           <p>
             I am Computer Science Engineering undergrature with interest in
-            building amazing websites. I have experience with front-end as well
-            as back-end engineering. I also love low level coding in languages
-            like Rust, Java, C, C++
+            building amazing websites.I like to code in typescript and have
+            worked with typescript in React and Vue.
+          </p>
+          <p>
+            Other than that I have a basic to intermediate knowledge of Node.js
+            and plan on learning Springboot as I am familiar with Java. Low
+            level programming really peaks my interest which is why I want to
+            add languages like Rust, Haskell and Go to my skill-set.
           </p>
         </div>
       </div>

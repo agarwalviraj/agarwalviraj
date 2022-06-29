@@ -19,7 +19,7 @@ const ContactMe = () => {
     <Application currentId={currentId}>
       <div className="main-section contact-me">
         <div className="text">
-          <span></span>
+          <span>Look likes my profile peaked your interest, go ahead and</span>
           <h1>Contact Me</h1>
           <div className="contact">
             <div className="profile">
@@ -29,7 +29,7 @@ const ContactMe = () => {
                 rel="noopener noreferrer"
                 href="mailto:viraj.ag007@gmail.com"
               >
-                viraj.ag007@gmail.com
+                <p>viraj.ag007@gmail.com</p>
               </a>
             </div>
             <div className="details">
@@ -39,25 +39,23 @@ const ContactMe = () => {
                 href="https://github.com/agarwalviraj"
               >
                 <FaGithub size={18} />
-                <span>GitHub</span>
+                <p>GitHub</p>
               </a>
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://www.aedin.com/in/agarwalviraj"
+                href="https://www.linkedin.com/in/agarwalviraj"
               >
                 <FaLinkedin size={18} />
-                <span>Linkedin</span>
+                <p>Linkedin</p>
               </a>
-            </div>
-            <div className="details">
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://twitter.com/agarwalviraj"
+                href="https://twitter.com/virajag007"
               >
                 <FaTwitter size={18} />
-                <span>Twitter</span>
+                <p>Twitter</p>
               </a>
             </div>
           </div>
