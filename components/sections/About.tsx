@@ -15,8 +15,8 @@ const About = () => {
           <h1>Viraj Agarawal</h1>
           <h3>I develop for the web.</h3>
           <p>
-            I am Computer Science Engineering undergrature with interest in
-            building amazing websites.I like to code in typescript and have
+            I am a Computer Science Engineering undergrature with interest in
+            building amazing websites. I like to code in typescript and have
             worked with typescript in React and Vue.
           </p>
           <p>
