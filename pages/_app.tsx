@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Viraj - Portfolio</title>
+        <link rel="shortcut icon" href="/Logo.ico" />
       </Head>
       <MainContentProvider>
         <Component {...pageProps} />

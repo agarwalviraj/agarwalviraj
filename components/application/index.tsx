@@ -9,7 +9,7 @@ interface AppProps {
 
 const Application = ({ children, currentId }: AppProps) => {
   const AppRef = useRef<HTMLDivElement>(null);
-  const { allApplications, active } = useMainStore()!;
+  const { allApplications, active, setActive } = useMainStore()!;
   const [onMobile, setOnMobile] = useState(false);
 
   const maximizedStyle = {};
@@ -65,7 +65,7 @@ const Application = ({ children, currentId }: AppProps) => {
         AppRef.current!.removeEventListener("mousedown", handleMouseDown);
       }
     };
-  }, [AppRef, allApplications, onMobile]);
+  }, [AppRef, allApplications, onMobile, currentId, allApplications]);
 
   useEffect(() => {
     const updateMobile = () => {
@@ -89,6 +89,7 @@ const Application = ({ children, currentId }: AppProps) => {
       <div
         className="application"
         ref={AppRef}
+        onClick={() => setActive(allApplications[currentId].slug)}
         style={
           !onMobile
             ? {

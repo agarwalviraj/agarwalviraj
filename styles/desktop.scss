@@ -22,9 +22,21 @@
     display: flex;
     color: white;
     height: 100%;
-    gap: 0.6rem;
+    // gap: 0.6rem;
     align-items: center;
     margin: 0 0.5rem;
+
+    .app-launcher {
+      min-height: 100%;
+      max-height: 100%;
+      max-width: 2.7rem;
+      padding: 0 0.3rem;
+    }
+
+    *:hover {
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      cursor: pointer;
+    }
 
     .active {
       background-color: black;
@@ -32,8 +44,8 @@
 
     svg {
       height: 100%;
-      width: 2.2rem;
-      padding: 0.4rem;
+      min-width: 2.7rem;
+      padding: 0.4rem 0.4rem;
     }
   }
   .home-button {
