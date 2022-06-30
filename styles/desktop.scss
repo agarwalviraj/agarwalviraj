@@ -5,7 +5,7 @@
   max-height: 100vh;
   max-width: 100vw;
 
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   min-width: 100vw;
 
   background-image: url("../public/assets/wallpaper.png");
@@ -18,13 +18,13 @@
   position: absolute;
   inset: auto 0 0;
   height: $taskbar-height;
+
   .taskbar-icons {
     display: flex;
     color: white;
     height: 100%;
     // gap: 0.6rem;
     align-items: center;
-    margin: 0 0.5rem;
 
     .app-launcher {
       min-height: 100%;

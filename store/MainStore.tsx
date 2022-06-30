@@ -24,8 +24,8 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
       name: "About me",
       icon: GoInfo,
       slug: slugs.ABOUT,
-      isOpen: false,
-      isMaximized: true,
+      isOpen: true,
+      isMaximized: false,
       isMinimized: false,
     },
     {
