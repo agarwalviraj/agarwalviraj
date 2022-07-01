@@ -4,6 +4,7 @@ import { Launcher } from "./";
 const Taskbar = () => {
   const {
     minimizeAll,
+    setAllApplications,
     allApplications,
     active,
     setActive,
@@ -27,7 +28,16 @@ const Taskbar = () => {
             .map((application, key) => (
               <application.icon
                 key={key}
-                onClick={() => setActive(application.slug)}
+                onClick={() => {
+                  setActive(application.slug);
+                  const updatedApps = allApplications;
+                  updatedApps.map((app) =>
+                    app.slug == application.slug
+                      ? (app.isMinimized = false)
+                      : null,
+                  );
+                  setAllApplications(updatedApps);
+                }}
                 className={active == application.slug ? "active" : ""}
               />
             ))}
