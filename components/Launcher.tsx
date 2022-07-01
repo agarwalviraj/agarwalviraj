@@ -21,6 +21,7 @@ const Launcher = () => {
         >
           <application.icon
             key={key}
+            size={32}
             className={`icon ${active == application.slug && "active"}`}
           />
           {application.name}
