@@ -10,18 +10,17 @@ const Recents = () => {
       {allApplications
         .filter((app) => app.isOpen)
         .map((application, key) => (
-          <SwiperSlide className="single-app">
+          <SwiperSlide className="single-app" key={key}>
             {application.slug == slugs.PROJECTS ? (
-              <Projects key={key} />
+              <Projects />
             ) : application.slug == slugs.ABOUT ? (
-              <About key={key} />
+              <About />
             ) : application.slug == slugs.TECHSTACK ? (
-              <TechStack key={key} />
+              <TechStack />
             ) : application.slug == slugs.CONTACTME ? (
-              <ContactMe key={key} />
+              <ContactMe />
             ) : null}
             <application.icon
-              key={key}
               onClick={() => setActive(application.slug)}
               className={active == application.slug ? "active" : ""}
               size={36}
