@@ -16,13 +16,17 @@ export const MainContentContext = React.createContext<{
   appLauncher: boolean;
   setAppLauncher: React.Dispatch<React.SetStateAction<boolean>>;
 
-  closeAll: () => void;
+  recents: boolean;
+  setRecents: React.Dispatch<React.SetStateAction<boolean>>;
+
+  minimizeAll: () => void;
 } | null>(null);
 
 const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
   const [active, setActive] = useState<slugs | undefined>();
 
   const [appLauncher, setAppLauncher] = useState(false);
+  const [recents, setRecents] = useState(false);
 
   const [allApplications, setAllApplications] = useState<ApplicationType[]>([
     {
@@ -59,14 +63,15 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
     },
   ]);
 
-  const closeAll = () => {
+  const minimizeAll = () => {
     setAllApplications((oldApps) => {
       const newApps = oldApps.map((app) => {
-        app.isOpen = false;
+        if (app.isOpen) app.isMinimized = true;
         return app;
       });
       return newApps;
     });
+    console.log(allApplications);
   };
 
   return (
@@ -74,11 +79,17 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         allApplications,
         setAllApplications,
+
         appLauncher,
         setAppLauncher,
+
         active,
         setActive,
-        closeAll,
+
+        minimizeAll,
+
+        recents,
+        setRecents,
       }}
     >
       {children}

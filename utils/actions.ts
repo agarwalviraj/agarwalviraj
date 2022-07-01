@@ -9,6 +9,7 @@ export function close(
   closeIfOpen = true,
 ) {
   const updatedApp = allApplications;
+  updatedApp[currentId].isMinimized = false;
   updatedApp[currentId].isOpen = closeIfOpen
     ? !updatedApp[currentId].isOpen
     : true;

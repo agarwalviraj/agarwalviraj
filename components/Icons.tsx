@@ -15,7 +15,7 @@ const Icons = () => {
       <div
         className="icon"
         onClick={() =>
-          close(allApplications, id, setActive, setAllApplications)
+          close(allApplications, id, setActive, setAllApplications, false)
         }
       >
         {<app.icon />} <br />

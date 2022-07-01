@@ -3,12 +3,14 @@ import { Launcher } from "./";
 
 const Taskbar = () => {
   const {
-    closeAll,
+    minimizeAll,
     allApplications,
     active,
     setActive,
     appLauncher,
     setAppLauncher,
+    recents,
+    setRecents,
   } = useMainStore()!;
 
   return (
@@ -31,9 +33,18 @@ const Taskbar = () => {
             ))}
         </div>
 
-        <div className="mobile-actions activites" onClick={closeAll} />
-        <div className="mobile-actions home" onClick={closeAll} />
-        <div className="mobile-actions back" onClick={closeAll} />
+        <div
+          className="mobile-actions activites"
+          onClick={() => setRecents(!recents)}
+        />
+        <div
+          className="mobile-actions home"
+          onClick={() => {
+            minimizeAll();
+            setRecents(false);
+          }}
+        />
+        <div className="mobile-actions back" />
       </div>
     </>
   );

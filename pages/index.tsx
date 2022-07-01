@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { useEffect } from "react";
-import { Icons, Taskbar, Wallpaper } from "../components";
+import { Icons, Taskbar, Wallpaper, Recents } from "../components";
 import { About, ContactMe, Projects, TechStack } from "../components/sections";
 import { useMainStore } from "../store/MainStore";
 import { slugs } from "../utils/types";
@@ -10,7 +10,7 @@ import { slugs } from "../utils/types";
 //Settings
 
 const Home: NextPage = () => {
-  const { allApplications } = useMainStore()!;
+  const { allApplications, recents } = useMainStore()!;
   useEffect(() => {
     function viewHeight() {
       let vh = window.innerHeight * 0.01;
@@ -27,8 +27,9 @@ const Home: NextPage = () => {
       <Wallpaper />
       <Taskbar />
       <Icons />
+      {recents && <Recents />}
       {allApplications.map((app, key) => {
-        if (app.isOpen) {
+        if (app.isOpen && !app.isMinimized) {
           if (app.slug == slugs.ABOUT) return <About key={key} />;
           if (app.slug == slugs.PROJECTS) return <Projects key={key} />;
           if (app.slug == slugs.TECHSTACK) return <TechStack key={key} />;

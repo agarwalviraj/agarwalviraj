@@ -84,6 +84,10 @@
   }
 }
 
+.recents {
+  display: none !important;
+}
+
 .icons {
   position: absolute;
   z-index: 3;
@@ -166,6 +170,44 @@
       border-top: $width solid transparent;
       border-bottom: $width solid transparent;
       border-right: 1.25rem solid white;
+    }
+  }
+  .recents {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 0 $taskbar-height 0;
+    background-color: rgba($color: #000000, $alpha: 0.9);
+    z-index: 20 !important;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    gap: 2rem;
+    padding: 2rem;
+
+    align-items: center;
+    justify-content: center;
+    .single-app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: auto 0.2rem;
+
+      .application {
+        position: relative;
+
+        min-width: 80%;
+        min-height: 75vh;
+
+        max-width: 80%;
+        max-height: 75%;
+      }
+      * {
+        overflow: hidden !important;
+        pointer-events: none !important;
+      }
     }
   }
 }
