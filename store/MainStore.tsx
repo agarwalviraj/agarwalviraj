@@ -13,11 +13,16 @@ export const MainContentContext = React.createContext<{
   active: slugs | undefined;
   setActive: React.Dispatch<React.SetStateAction<slugs | undefined>>;
 
+  appLauncher: boolean;
+  setAppLauncher: React.Dispatch<React.SetStateAction<boolean>>;
+
   closeAll: () => void;
 } | null>(null);
 
 const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
   const [active, setActive] = useState<slugs | undefined>();
+
+  const [appLauncher, setAppLauncher] = useState(false);
 
   const [allApplications, setAllApplications] = useState<ApplicationType[]>([
     {
@@ -69,6 +74,8 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         allApplications,
         setAllApplications,
+        appLauncher,
+        setAppLauncher,
         active,
         setActive,
         closeAll,

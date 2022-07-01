@@ -6,9 +6,12 @@ export function close(
   currentId: number,
   setActive: Dispatch<SetStateAction<slugs | undefined>>,
   setAllApplications: Dispatch<SetStateAction<ApplicationType[]>>,
+  closeIfOpen = true,
 ) {
   const updatedApp = allApplications;
-  updatedApp[currentId].isOpen = !updatedApp[currentId].isOpen;
+  updatedApp[currentId].isOpen = closeIfOpen
+    ? !updatedApp[currentId].isOpen
+    : true;
   setActive(allApplications[currentId].slug);
   setAllApplications([...updatedApp]);
 }
