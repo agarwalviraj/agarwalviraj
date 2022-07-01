@@ -13,6 +13,7 @@ const Launcher = () => {
     <div className="launcher">
       {allApplications.map((application, key) => (
         <div
+          key={key}
           onClick={() => {
             close(allApplications, key, setActive, setAllApplications, false);
             setAppLauncher(false);
@@ -20,7 +21,6 @@ const Launcher = () => {
           className="launcher-icon"
         >
           <application.icon
-            key={key}
             size={32}
             className={`icon ${active == application.slug && "active"}`}
           />
