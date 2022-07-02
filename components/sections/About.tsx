@@ -12,7 +12,7 @@ const About = () => {
       <div className="about-me main-section">
         <div className="text">
           <span>Hi, my name is</span>
-          <h1>Viraj Agarawal</h1>
+          <h1>Viraj Agarwal</h1>
           <h3>I develop for the web.</h3>
           <p>
             I am a Computer Science Engineering undergrature with interest in
