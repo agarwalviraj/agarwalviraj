@@ -38,3 +38,17 @@ export function minimize(
   updatedApp[currentId].isMinimized = !updatedApp[currentId].isMinimized;
   setAllApplications([...updatedApp]);
 }
+
+export function minimizeOne(
+  slug: ApplicationType["slug"],
+  allApplications: ApplicationType[],
+  setAllApplications: Dispatch<SetStateAction<ApplicationType[]>>,
+  setRecents?: Dispatch<boolean>,
+) {
+  const updatedApps = allApplications;
+  updatedApps.map((app) =>
+    app.slug == slug ? (app.isMinimized = false) : null,
+  );
+  setAllApplications(updatedApps);
+  setRecents && setRecents(false);
+}

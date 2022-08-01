@@ -1,4 +1,5 @@
 import { useMainStore } from "../store/MainStore";
+import { minimizeOne } from "../utils/actions";
 import { Launcher } from "./";
 
 const Taskbar = () => {
@@ -30,13 +31,11 @@ const Taskbar = () => {
                 key={key}
                 onClick={() => {
                   setActive(application.slug);
-                  const updatedApps = allApplications;
-                  updatedApps.map((app) =>
-                    app.slug == application.slug
-                      ? (app.isMinimized = false)
-                      : null,
+                  minimizeOne(
+                    application.slug,
+                    allApplications,
+                    setAllApplications,
                   );
-                  setAllApplications(updatedApps);
                 }}
                 className={active == application.slug ? "active" : ""}
               />
