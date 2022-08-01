@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import Application from "../application";
 import { useMainStore } from "../../store/MainStore";
@@ -11,20 +11,23 @@ import {
   EventsPortal,
   WebsiteBuilder,
 } from "../../public/assets/projects";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 interface projectType {
   image: StaticImageData;
   name: string;
+  description?: string;
 }
 
 const Projects = () => {
   const { allApplications } = useMainStore()!;
+  const [openProject, setOpenProject] = useState<null | projectType>(null);
   const currentId = allApplications.findIndex(
     (obj) => obj.slug == slugs.PROJECTS,
   );
 
   const allProjects: projectType[] = [
-    { image: Sandesh, name: "Sandesh" },
+    { image: Sandesh, name: "Sandesh", description: "hello" },
     { image: Mozofest, name: "Mozofest" },
     { image: EventsPortal, name: "SRMKZILLA - Events Portal" },
 
@@ -34,33 +37,52 @@ const Projects = () => {
     { image: Vital, name: "Vital" },
   ];
 
-  const Project = ({ name, image }: projectType) => {
+  const Project = ({ project }: { project: projectType }) => {
     return (
-      <div className="project">
+      <div className="project" onClick={() => setOpenProject(project)}>
         <div className="image">
-          <Image src={image} width={1920} height={960}></Image>
+          <Image src={project.image} width={1920} height={960}></Image>
         </div>
-        <h5>{name}</h5>
+        <h5>{project.name}</h5>
       </div>
     );
   };
 
   return (
     <Application currentId={currentId}>
-      <div className="projects main-section">
-        <div className="text">
-          <span>Here is a collection of my awesome</span>
+      {!openProject ? (
+        <div className="projects main-section">
+          <div className="text">
+            <span>Here is a collection of my awesome</span>
 
-          <h1>Projects</h1>
+            <h1>Projects</h1>
+          </div>
+          <div className="all-projects">
+            {allProjects.map((proj, id) => (
+              <React.Fragment key={id}>
+                <Project project={proj} />
+              </React.Fragment>
+            ))}
+          </div>
         </div>
-        <div className="all-projects">
-          {allProjects.map((proj, id) => (
-            <React.Fragment key={id}>
-              <Project name={proj.name} image={proj.image} />
-            </React.Fragment>
-          ))}
+      ) : (
+        <div className="projects main-section single-project">
+          <div className="heading">
+            <AiOutlineArrowLeft
+              onClick={() => setOpenProject(null)}
+              size={32}
+            />
+            <h3>{openProject.name}</h3>
+          </div>
+          <div className="description">
+            {openProject.description && <p>{openProject.description}</p>}
+
+            <div className="image">
+              <Image src={openProject.image} width={1920} height={960}></Image>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </Application>
   );
 };

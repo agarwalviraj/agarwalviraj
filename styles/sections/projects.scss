@@ -30,3 +30,25 @@
     }
   }
 }
+
+.single-project {
+  .heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  .description {
+    display: flex;
+    p {
+      width: 50%;
+    }
+    img {
+      width: 50%;
+    }
+  }
+}

@@ -28,3 +28,13 @@ export function maximize(
   setActive(allApplications[currentId].slug);
   setAllApplications([...updatedApp]);
 }
+
+export function minimize(
+  allApplications: ApplicationType[],
+  currentId: number,
+  setAllApplications: Dispatch<SetStateAction<ApplicationType[]>>,
+) {
+  const updatedApp = allApplications;
+  updatedApp[currentId].isMinimized = !updatedApp[currentId].isMinimized;
+  setAllApplications([...updatedApp]);
+}
