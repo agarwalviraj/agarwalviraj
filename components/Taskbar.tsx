@@ -1,5 +1,5 @@
 import { useMainStore } from "../store/MainStore";
-import { minimizeOne } from "../utils/actions";
+import { maximizeOne } from "../utils/actions";
 import { Launcher } from "./";
 
 const Taskbar = () => {
@@ -31,7 +31,7 @@ const Taskbar = () => {
                 key={key}
                 onClick={() => {
                   setActive(application.slug);
-                  minimizeOne(
+                  maximizeOne(
                     application.slug,
                     allApplications,
                     setAllApplications,

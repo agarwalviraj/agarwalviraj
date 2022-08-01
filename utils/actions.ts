@@ -39,7 +39,7 @@ export function minimize(
   setAllApplications([...updatedApp]);
 }
 
-export function minimizeOne(
+export function maximizeOne(
   slug: ApplicationType["slug"],
   allApplications: ApplicationType[],
   setAllApplications: Dispatch<SetStateAction<ApplicationType[]>>,

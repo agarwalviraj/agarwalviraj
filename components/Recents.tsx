@@ -2,7 +2,7 @@ import { useMainStore } from "../store/MainStore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { About, ContactMe, Projects, TechStack } from "./sections";
 import { slugs } from "../utils/types";
-import { minimize, minimizeOne } from "../utils/actions";
+import { minimize, maximizeOne } from "../utils/actions";
 
 const Recents = () => {
   const { allApplications, active, setActive, setAllApplications, setRecents } =
@@ -17,7 +17,7 @@ const Recents = () => {
             key={key}
             onClick={() => {
               setActive(application.slug);
-              minimizeOne(
+              maximizeOne(
                 application.slug,
                 allApplications,
                 setAllApplications,
