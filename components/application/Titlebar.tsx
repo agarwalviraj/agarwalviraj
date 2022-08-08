@@ -33,7 +33,7 @@ const Titlebar = ({ currentId }: TitlebarProps) => {
         <FaRegWindowMinimize
           className="minimize"
           onClick={() =>
-            minimize(allApplications, currentId, setAllApplications)
+            minimize(allApplications, currentId, setAllApplications, setActive)
           }
         />
       </div>

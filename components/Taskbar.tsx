@@ -30,6 +30,8 @@ const Taskbar = () => {
               <application.icon
                 key={key}
                 onClick={() => {
+                  console.log("hello");
+
                   setActive(application.slug);
                   maximizeOne(
                     application.slug,
