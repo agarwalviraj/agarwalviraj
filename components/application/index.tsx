@@ -9,10 +9,8 @@ interface AppProps {
 
 const Application = ({ children, currentId }: AppProps) => {
   const AppRef = useRef<HTMLDivElement>(null);
-  const { allApplications, active, setActive } = useMainStore()!;
-  const [onMobile, setOnMobile] = useState(false);
-
-  const maximizedStyle = {};
+  const { allApplications, active, setActive, onMobile, setOnMobile } =
+    useMainStore()!;
 
   const handleMouseDown = function (e: MouseEvent) {
     const targetElement = e.target as Element;
@@ -69,7 +67,6 @@ const Application = ({ children, currentId }: AppProps) => {
 
   useEffect(() => {
     const updateMobile = () => {
-      setOnMobile(window.innerWidth < 768);
       if (
         !allApplications[currentId].isMaximized &&
         AppRef.current &&

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { IconType } from "react-icons";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { BsStack } from "react-icons/bs";
@@ -20,6 +20,12 @@ export const MainContentContext = React.createContext<{
   setRecents: React.Dispatch<React.SetStateAction<boolean>>;
 
   minimizeAll: () => void;
+
+  onMobile: boolean;
+  setOnMobile: React.Dispatch<React.SetStateAction<boolean>>;
+
+  helpShown: boolean;
+  setHelpShown: React.Dispatch<React.SetStateAction<boolean>>;
 } | null>(null);
 
 const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
@@ -27,13 +33,15 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [appLauncher, setAppLauncher] = useState(false);
   const [recents, setRecents] = useState(false);
+  const [onMobile, setOnMobile] = useState(false);
+  const [helpShown, setHelpShown] = useState(false);
 
   const [allApplications, setAllApplications] = useState<ApplicationType[]>([
     {
       name: "About me",
       icon: GoInfo,
       slug: slugs.ABOUT,
-      isOpen: true,
+      isOpen: false,
       isMaximized: false,
       isMinimized: false,
     },
@@ -74,6 +82,16 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
     console.log(allApplications);
   };
 
+  useEffect(() => {
+    const updateMobile = () => {
+      setOnMobile(window.innerWidth < 768);
+    };
+    updateMobile();
+
+    window.addEventListener("resize", updateMobile);
+    return () => window.removeEventListener("resize", updateMobile);
+  }, []);
+
   return (
     <MainContentContext.Provider
       value={{
@@ -90,6 +108,12 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
 
         recents,
         setRecents,
+
+        onMobile,
+        setOnMobile,
+
+        helpShown,
+        setHelpShown,
       }}
     >
       {children}

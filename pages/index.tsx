@@ -1,6 +1,6 @@
 import { NextPage } from "next";
-import { useEffect } from "react";
-import { Icons, Taskbar, Wallpaper, Recents } from "../components";
+import { useEffect, useState } from "react";
+import { Icons, Taskbar, Wallpaper, Recents, Help } from "../components";
 import { About, ContactMe, Projects, TechStack } from "../components/sections";
 import { useMainStore } from "../store/MainStore";
 import { slugs } from "../utils/types";
@@ -10,8 +10,11 @@ import { slugs } from "../utils/types";
 //Settings
 
 const Home: NextPage = () => {
-  const { allApplications, recents } = useMainStore()!;
+  const { allApplications, recents, helpShown, setHelpShown } = useMainStore()!;
+  const [step, setStep] = useState(1);
   useEffect(() => {
+    setHelpShown(!!localStorage.getItem("help-shown"));
+
     function viewHeight() {
       let vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -22,8 +25,16 @@ const Home: NextPage = () => {
     return () => document.removeEventListener("resize", viewHeight);
   }, []);
 
+  useEffect(() => {
+    if (step == 0) {
+      setHelpShown(true);
+      localStorage.setItem("help-shown", "true");
+    }
+  }, [step]);
+
   return (
     <div className="main">
+      {!helpShown && step > 0 && <Help step={step} setStep={setStep} />}
       <Wallpaper />
       <Taskbar />
       <Icons />
