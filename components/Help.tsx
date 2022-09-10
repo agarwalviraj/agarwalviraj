@@ -19,7 +19,7 @@ const Help = ({
       <div className="highlight"></div>
       <ReactSVG src="assets/help/Arrow1.svg" className="arrow1" />
       <p>
-        These are the &quotapplications&quot you can select from which tell
+        These are the &quot;applications&quot; you can select from which tell
         about me
       </p>
     </div>
@@ -29,8 +29,9 @@ const Help = ({
       <div className="mobile-taskbar-highlight"></div>
       <ReactSVG src="assets/help/Arrow2.svg" className="arrow2" />
       <p>
-        These are the &ldquoRecents&ldquo, &ldquoHome&ldquo and &ldquoBack&ldquo
-        button respectively. They can be used like in a mobile.
+        These are the &ldquo;Recents&ldquo;, &ldquo;Home&ldquo; and
+        &ldquo;Back&ldquo; button respectively. They can be used like in a
+        mobile.
       </p>
     </div>
   );

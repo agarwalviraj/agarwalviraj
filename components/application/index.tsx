@@ -106,7 +106,7 @@ const Application = ({ children, currentId }: AppProps) => {
               }
         }
       >
-        {!onMobile && <Titlebar currentId={currentId} />}
+        {!onMobile && <Titlebar currentId={currentId} AppRef={AppRef} />}
         <div className="application_main_section">{children}</div>
       </div>
     </>

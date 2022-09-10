@@ -3,12 +3,14 @@ import { FiMaximize2, FiMinimize2 } from "react-icons/fi";
 import { FaRegWindowMinimize } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { close, maximize, minimize } from "../../utils/actions";
+import { RefObject } from "react";
 
 interface TitlebarProps {
   currentId: number;
+  AppRef: RefObject<HTMLDivElement>;
 }
 
-const Titlebar = ({ currentId }: TitlebarProps) => {
+const Titlebar = ({ currentId, AppRef }: TitlebarProps) => {
   const { setActive, allApplications, setAllApplications } = useMainStore()!;
   return (
     <div
@@ -25,9 +27,13 @@ const Titlebar = ({ currentId }: TitlebarProps) => {
         />
         <FiMaximize2
           className="maximize"
-          onClick={() =>
-            maximize(allApplications, currentId, setActive, setAllApplications)
-          }
+          onClick={() => {
+            AppRef.current!.style.transitionProperty = "inset, width, height";
+            setTimeout(() => {
+              AppRef.current!.style.transitionProperty = "garbageValue";
+            }, 1000);
+            maximize(allApplications, currentId, setActive, setAllApplications);
+          }}
         />
 
         <FaRegWindowMinimize
