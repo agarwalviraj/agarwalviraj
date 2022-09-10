@@ -1,4 +1,5 @@
 .application {
+  transition-property: garbageValue;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
   z-index: 15;
