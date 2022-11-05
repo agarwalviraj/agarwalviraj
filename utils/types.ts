@@ -5,6 +5,7 @@ export enum slugs {
   PROJECTS = "projects",
   TECHSTACK = "techStack",
   CONTACTME = "contactMe",
+  TERMINAL = "terminal",
 }
 
 export interface ApplicationType {

@@ -1,7 +1,13 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { Icons, Taskbar, Wallpaper, Recents, Help } from "../components";
-import { About, ContactMe, Projects, TechStack } from "../components/sections";
+import {
+  About,
+  ContactMe,
+  Projects,
+  TechStack,
+  Terminal,
+} from "../components/sections";
 import { useMainStore } from "../store/MainStore";
 import { slugs } from "../utils/types";
 
@@ -45,6 +51,7 @@ const Home: NextPage = () => {
           if (app.slug == slugs.PROJECTS) return <Projects key={key} />;
           if (app.slug == slugs.TECHSTACK) return <TechStack key={key} />;
           if (app.slug == slugs.CONTACTME) return <ContactMe key={key} />;
+          if (app.slug == slugs.TERMINAL) return <Terminal key={key} />;
         }
       })}
     </div>

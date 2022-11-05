@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { IconType } from "react-icons";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { BsStack } from "react-icons/bs";
 import { GoInfo } from "react-icons/go";
 import { IoIosContact } from "react-icons/io";
+import { GoTerminal } from "react-icons/go";
 import { ApplicationType, slugs } from "../utils/types";
 
 export const MainContentContext = React.createContext<{
@@ -68,6 +68,14 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
       isOpen: false,
       isMaximized: true,
       isMinimized: false,
+    },
+    {
+      name: "Terminal",
+      slug: slugs.TERMINAL,
+      isOpen: false,
+      isMaximized: false,
+      isMinimized: false,
+      icon: GoTerminal,
     },
   ]);
 

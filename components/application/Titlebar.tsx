@@ -28,7 +28,7 @@ const Titlebar = ({ currentId, AppRef }: TitlebarProps) => {
         <FiMaximize2
           className="maximize"
           onClick={() => {
-            AppRef.current!.style.transitionProperty = "inset, width, height";
+            AppRef.current!.style.transitionProperty = "all";
             setTimeout(() => {
               AppRef.current!.style.transitionProperty = "garbageValue";
             }, 1000);

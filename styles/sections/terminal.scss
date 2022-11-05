@@ -1,0 +1,23 @@
+.terminal {
+  padding: 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  color: #ccd6f6;
+  font-family: "Roboto Mono", monospace;
+  .command-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .text {
+      font-family: "Roboto Mono", monospace;
+      color: #ccd6f6;
+      background-color: transparent;
+      flex-grow: 1;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
