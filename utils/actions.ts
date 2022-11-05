@@ -9,11 +9,14 @@ export function close(
   closeIfOpen = true,
 ) {
   const updatedApp = allApplications;
-  updatedApp[currentId].isMinimized = false;
+
+  if (updatedApp[currentId].isMinimized)
+    updatedApp[currentId].isMinimized = false;
+
   updatedApp[currentId].isOpen = closeIfOpen
     ? !updatedApp[currentId].isOpen
     : true;
-  setActive(allApplications[currentId].slug);
+  if (updatedApp[currentId].isOpen) setActive(allApplications[currentId].slug);
   setAllApplications([...updatedApp]);
 }
 
