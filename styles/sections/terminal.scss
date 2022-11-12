@@ -4,20 +4,28 @@
   flex-direction: column;
   gap: 0.25rem;
   line-height: 1.2rem;
-
-  color: #ccd6f6;
   font-family: "Roboto Mono", monospace;
+
+  .output {
+    color: $terminal-output;
+  }
+
+  .help-output {
+    margin-bottom: 0.5rem;
+  }
+
   .command-line {
     letter-spacing: 0.01ch;
     display: flex;
     align-items: center;
     justify-content: center;
-    p {
-      margin-bottom: 0.5rem;
+    .prompt {
+      color: $terminal-prompt;
     }
     .text {
       font-family: "Roboto Mono", monospace;
-      color: #ccd6f6;
+      // color: #ccd6f6;
+      color: $terminal-text;
       background-color: transparent;
       flex-grow: 1;
       &:focus {

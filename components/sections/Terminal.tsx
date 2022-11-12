@@ -2,11 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMainStore } from "../../store/MainStore";
 import { slugs } from "../../utils/types";
 import Application from "../application";
-import { toggleApp, close } from "../../utils/actions";
+import { toggleApp, close, minimize } from "../../utils/actions";
 
 const Terminal = () => {
-  const { allApplications, setActive, setAllApplications } = useMainStore()!;
-  const DefaultPrompt = () => <div>admin@agarwalviraj.in -&gt;&nbsp;</div>;
+  const { allApplications, setActive, setAllApplications, onMobile } =
+    useMainStore()!;
+  const DefaultPrompt = () => (
+    <div className="prompt">admin@agarwalviraj.in -&gt;&nbsp;</div>
+  );
 
   const [count, setCount] = useState(1);
   const [currentInputValue, setCurrentInputValue] = useState("");
@@ -21,7 +24,7 @@ const Terminal = () => {
 
   const commands = {
     "help": () => {
-      outputRef.current!.innerHTML = `<p><strong>Try running any of these commands</strong></p> 
+      outputRef.current!.innerHTML = `<p class="help-output"><strong>Try running any of these commands</strong></p> 
       ${allApps}`;
     },
     "clear": () => {
@@ -58,6 +61,14 @@ const Terminal = () => {
                 false,
               );
             }
+            if (onMobile)
+              minimize(
+                allApplications,
+                currentId,
+                setAllApplications,
+                setActive,
+                false,
+              );
           }
         });
 

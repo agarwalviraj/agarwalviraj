@@ -9,7 +9,6 @@ export function toggleApp(
   toggle = true,
 ) {
   const updatedApp = allApplications;
-
   if (updatedApp[currentId].isMinimized)
     updatedApp[currentId].isMinimized = false;
 
@@ -45,9 +44,12 @@ export function minimize(
   currentId: number,
   setAllApplications: Dispatch<SetStateAction<ApplicationType[]>>,
   setActive: Dispatch<SetStateAction<slugs | undefined>>,
+  toggle = true,
 ) {
   const updatedApp = allApplications;
-  updatedApp[currentId].isMinimized = !updatedApp[currentId].isMinimized;
+  updatedApp[currentId].isMinimized = toggle
+    ? !updatedApp[currentId].isMinimized
+    : true;
   setActive(undefined);
   setAllApplications([...updatedApp]);
 }
