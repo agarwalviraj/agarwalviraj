@@ -6,7 +6,7 @@ import { toggleApp, close } from "../../utils/actions";
 
 const Terminal = () => {
   const { allApplications, setActive, setAllApplications } = useMainStore()!;
-  const DefaultPrompt = () => <div>{"admin@agarwalviraj.in -> ~  "}</div>;
+  const DefaultPrompt = () => <div>admin@agarwalviraj.in -&gt;&nbsp;</div>;
 
   const [count, setCount] = useState(1);
   const [currentInputValue, setCurrentInputValue] = useState("");
@@ -17,7 +17,7 @@ const Terminal = () => {
     .map((app) => app.name.split(" ").join("-").toLocaleLowerCase())
     .toString()
     .replaceAll(",", "<br/>");
-  allApps = allApps + "<br/>exit ";
+  allApps = allApps + "<br/>exit<br/>help ";
 
   const commands = {
     "help": () => {
@@ -87,7 +87,6 @@ const Terminal = () => {
               <input
                 type="text"
                 className="text"
-                key={i}
                 value={i == count - 1 ? currentInputValue : undefined}
                 onChange={(e) => setCurrentInputValue(e.target.value)}
                 disabled={i != count - 1 ? true : false}
