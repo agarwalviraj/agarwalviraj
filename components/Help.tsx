@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ReactSVG } from "react-svg";
 import { useMainStore } from "../store/MainStore";
-import { close } from "../utils/actions";
+import { toggleApp } from "../utils/actions";
 
 const Help = ({
   step,
@@ -69,7 +69,7 @@ const Help = ({
   }, []);
   useEffect(() => {
     if (step == 3) {
-      close(allApplications, 0, setActive, setAllApplications, false);
+      toggleApp(allApplications, 0, setActive, setAllApplications, false);
     }
   }, [step]);
   return (

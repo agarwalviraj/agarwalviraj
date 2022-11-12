@@ -2,7 +2,7 @@ import { useMainStore } from "../../store/MainStore";
 import { FiMaximize2, FiMinimize2 } from "react-icons/fi";
 import { FaRegWindowMinimize } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
-import { close, maximize, minimize } from "../../utils/actions";
+import { toggleApp, maximize, minimize } from "../../utils/actions";
 import { RefObject } from "react";
 
 interface TitlebarProps {
@@ -22,7 +22,7 @@ const Titlebar = ({ currentId, AppRef }: TitlebarProps) => {
         <AiOutlineClose
           className="close"
           onClick={() =>
-            close(allApplications, currentId, setActive, setAllApplications)
+            toggleApp(allApplications, currentId, setActive, setAllApplications)
           }
         />
         <FiMaximize2

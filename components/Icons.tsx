@@ -1,5 +1,5 @@
 import { useMainStore } from "../store/MainStore";
-import { close } from "../utils/actions";
+import { toggleApp } from "../utils/actions";
 import { ApplicationType } from "../utils/types";
 
 interface IconProps {
@@ -15,7 +15,7 @@ const Icons = () => {
       <div
         className="icon"
         onClick={() =>
-          close(allApplications, id, setActive, setAllApplications, false)
+          toggleApp(allApplications, id, setActive, setAllApplications, false)
         }
       >
         {<app.icon />} <br />

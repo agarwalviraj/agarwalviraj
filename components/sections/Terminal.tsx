@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMainStore } from "../../store/MainStore";
 import { slugs } from "../../utils/types";
 import Application from "../application";
-import { close } from "../../utils/actions";
+import { toggleApp, close } from "../../utils/actions";
 
 const Terminal = () => {
   const { allApplications, setActive, setAllApplications } = useMainStore()!;
@@ -13,11 +13,11 @@ const Terminal = () => {
 
   const outputRef = useRef<HTMLDivElement>(null);
   const commandRef = useRef<HTMLDivElement>(null);
-  const allApps = allApplications
+  let allApps = allApplications
     .map((app) => app.name.split(" ").join("-").toLocaleLowerCase())
     .toString()
     .replaceAll(",", "<br/>");
-  console.log(allApps);
+  allApps = allApps + "<br/>exit ";
 
   const commands = {
     "help": () => {
@@ -28,12 +28,12 @@ const Terminal = () => {
       document.querySelector(".output")!.innerHTML = "";
       setCount(0);
     },
-    "about": 0,
-    "project": 1,
+    "about-me": 0,
+    "projects": 1,
     "tech-stack": 2,
     "contact-me": 3,
     "exit": () => {
-      close(allApplications, 4, setActive, setAllApplications, true);
+      close(allApplications, 4, setAllApplications);
     },
   };
 
@@ -46,11 +46,11 @@ const Terminal = () => {
       e.preventDefault();
       setCurrentInputValue((old) => {
         Object.keys(commands).map((command) => {
-          if (old.includes(command)) {
+          if (old.toLowerCase() === command.toLowerCase()) {
             if (typeof (commands as any)[command] === "function")
               (commands as any)[command]();
             else if ((commands as any)[command] >= 0) {
-              close(
+              toggleApp(
                 allApplications,
                 (commands as any)[command],
                 setActive,

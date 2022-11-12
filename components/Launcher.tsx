@@ -1,5 +1,5 @@
 import { useMainStore } from "../store/MainStore";
-import { close } from "../utils/actions";
+import { toggleApp } from "../utils/actions";
 
 const Launcher = () => {
   const {
@@ -15,7 +15,13 @@ const Launcher = () => {
         <div
           key={key}
           onClick={() => {
-            close(allApplications, key, setActive, setAllApplications, false);
+            toggleApp(
+              allApplications,
+              key,
+              setActive,
+              setAllApplications,
+              false,
+            );
             setAppLauncher(false);
           }}
           className="launcher-icon"
