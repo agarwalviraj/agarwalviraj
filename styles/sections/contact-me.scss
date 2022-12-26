@@ -6,6 +6,15 @@
       color: #ccd6f6;
     }
 
+    .resume {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: underline;
+      color: $hover-color;
+    }
+
     .profile {
       display: flex;
       align-items: center;

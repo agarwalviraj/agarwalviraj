@@ -16,26 +16,27 @@ const Terminal = () => {
 
   const outputRef = useRef<HTMLDivElement>(null);
   const commandRef = useRef<HTMLDivElement>(null);
-  let allApps = allApplications
-    .map((app) => app.name.split(" ").join("-").toLocaleLowerCase())
+  let allApps = Object.keys(slugs)
     .toString()
+    .toLowerCase()
     .replaceAll(",", "<br/>");
   allApps = allApps + "<br/>exit<br/>help ";
 
   const commands = {
-    "help": () => {
+    about: 0,
+    projects: 1,
+    techstack: 2,
+    contactme: 3,
+
+    help: () => {
       outputRef.current!.innerHTML = `<p class="help-output"><strong>Try running any of these commands</strong></p> 
       ${allApps}`;
     },
-    "clear": () => {
+    clear: () => {
       document.querySelector(".output")!.innerHTML = "";
       setCount(0);
     },
-    "about-me": 0,
-    "projects": 1,
-    "tech-stack": 2,
-    "contact-me": 3,
-    "exit": () => {
+    exit: () => {
       close(allApplications, 4, setAllApplications);
     },
   };
@@ -61,7 +62,7 @@ const Terminal = () => {
                 false,
               );
             }
-            if (onMobile)
+            if (onMobile && (commands as any)[command] >= 0)
               minimize(
                 allApplications,
                 currentId,

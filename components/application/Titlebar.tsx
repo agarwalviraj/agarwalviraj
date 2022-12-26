@@ -28,11 +28,18 @@ const Titlebar = ({ currentId, AppRef }: TitlebarProps) => {
         <FiMaximize2
           className="maximize"
           onClick={() => {
-            AppRef.current!.style.transitionProperty = "all";
-            setTimeout(() => {
-              AppRef.current!.style.transitionProperty = "garbageValue";
-            }, 1000);
-            maximize(allApplications, currentId, setActive, setAllApplications);
+            if (AppRef.current) {
+              AppRef.current!.style.transitionProperty = "all";
+              setTimeout(() => {
+                AppRef.current!.style.transitionProperty = "garbageValue";
+              }, 1000);
+              maximize(
+                allApplications,
+                currentId,
+                setActive,
+                setAllApplications,
+              );
+            }
           }}
         />
 

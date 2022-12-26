@@ -1,6 +1,6 @@
 import { useMainStore } from "../store/MainStore";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { About, ContactMe, Projects, TechStack } from "./sections";
+import { About, ContactMe, Projects, TechStack, Terminal } from "./sections";
 import { slugs } from "../utils/types";
 import { maximizeOne, minimize } from "../utils/actions";
 
@@ -35,6 +35,8 @@ const Recents = () => {
               <TechStack />
             ) : application.slug == slugs.CONTACTME ? (
               <ContactMe />
+            ) : application.slug == slugs.TERMINAL ? (
+              <Terminal />
             ) : null}
             <application.icon
               onClick={() => setActive(application.slug)}

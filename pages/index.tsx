@@ -1,5 +1,6 @@
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useMemo, useState } from "react";
 import { Icons, Taskbar, Wallpaper, Recents, Help } from "../components";
 import {
   About,
@@ -9,6 +10,7 @@ import {
   Terminal,
 } from "../components/sections";
 import { useMainStore } from "../store/MainStore";
+import { toggleApp } from "../utils/actions";
 import { slugs } from "../utils/types";
 
 //System Tray
@@ -16,9 +18,54 @@ import { slugs } from "../utils/types";
 //Settings
 
 const Home: NextPage = () => {
-  const { allApplications, recents, helpShown, setHelpShown } = useMainStore()!;
+  const {
+    allApplications,
+    recents,
+    helpShown,
+    setHelpShown,
+    setActive,
+    setAllApplications,
+  } = useMainStore()!;
   const [step, setStep] = useState(1);
+  const [hydrated, setHydrated] = useState(false);
+
+  const memoApp = useMemo(
+    () => ({
+      app: allApplications.map((app) => ({
+        isOpen: app.isOpen,
+        slug: app.slug,
+      })),
+    }),
+    [allApplications],
+  );
+
+  const router = useRouter();
+
   useEffect(() => {
+    const query = router.query?.apps;
+    const openApps =
+      typeof query == "string" ? query?.split(",").map((app) => app) : query;
+
+    Object.keys(slugs).map((key, id) => {
+      if (openApps?.includes(key.toLowerCase())) {
+        toggleApp(allApplications, id, setActive, setAllApplications, false);
+      }
+    });
+  }, [router.query?.apps]);
+
+  useEffect(() => {
+    if (router.isReady) {
+      const filtered = memoApp.app.filter((app) => app.isOpen);
+      const list = filtered.reduce(
+        (app, old) => `${app}${old.slug.toLocaleLowerCase()},`,
+        "",
+      );
+      router.push("/?apps=" + list, undefined, { shallow: true });
+    }
+  }, [memoApp]);
+
+  useEffect(() => {
+    setHydrated(true);
     setHelpShown(!!localStorage.getItem("help-shown"));
 
     function viewHeight() {
@@ -40,7 +87,9 @@ const Home: NextPage = () => {
 
   return (
     <div className="main">
-      {!helpShown && step > 0 && <Help step={step} setStep={setStep} />}
+      {hydrated && !helpShown && step > 0 && (
+        <Help step={step} setStep={setStep} />
+      )}
       <Wallpaper />
       <Taskbar />
       <Icons />

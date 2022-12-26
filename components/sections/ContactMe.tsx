@@ -9,6 +9,7 @@ import {
   FaYoutube,
   FaGhost,
 } from "react-icons/fa";
+import { FiExternalLink } from "react-icons/fi";
 
 const ContactMe = () => {
   const { allApplications } = useMainStore()!;
@@ -58,6 +59,15 @@ const ContactMe = () => {
                 <p>Twitter</p>
               </a>
             </div>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="http://resume.agarwalviraj.in"
+              className="resume"
+            >
+              Download resume
+              <FiExternalLink />
+            </a>
           </div>
         </div>
       </div>
