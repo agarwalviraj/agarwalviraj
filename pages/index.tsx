@@ -42,16 +42,18 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const query = router.query?.apps;
-    const openApps =
-      typeof query == "string" ? query?.split(",").map((app) => app) : query;
+    if (router.isReady) {
+      const query = router.query?.apps;
+      const openApps =
+        typeof query == "string" ? query?.split(",").map((app) => app) : query;
 
-    Object.keys(slugs).map((key, id) => {
-      if (openApps?.includes(key.toLowerCase())) {
-        toggleApp(allApplications, id, setActive, setAllApplications, false);
-      }
-    });
-  }, [router.query?.apps]);
+      Object.keys(slugs).map((key, id) => {
+        if (openApps?.includes(key.toLowerCase())) {
+          toggleApp(allApplications, id, setActive, setAllApplications, false);
+        }
+      });
+    }
+  }, [router.isReady]);
 
   useEffect(() => {
     if (router.isReady) {

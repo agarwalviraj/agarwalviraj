@@ -8,13 +8,15 @@ export function toggleApp(
   setAllApplications: Dispatch<SetStateAction<ApplicationType[]>>,
   toggle = true,
 ) {
-  const updatedApp = allApplications;
-  if (updatedApp[currentId].isMinimized)
-    updatedApp[currentId].isMinimized = false;
-
-  updatedApp[currentId].isOpen = toggle ? !updatedApp[currentId].isOpen : true;
-  if (updatedApp[currentId].isOpen) setActive(allApplications[currentId].slug);
-  setAllApplications([...updatedApp]);
+  setAllApplications((old) => {
+    if (old[currentId].isMinimized) old[currentId].isMinimized = false;
+    old[currentId].isOpen = toggle ? !old[currentId].isOpen : true;
+    if (old[currentId].isOpen || !toggle) {
+      setActive(allApplications[currentId].slug);
+    }
+    setAllApplications([...old]);
+    return old;
+  });
 }
 
 export function close(
@@ -40,18 +42,14 @@ export function maximize(
 }
 
 export function minimize(
-  allApplications: ApplicationType[],
   currentId: number,
   setAllApplications: Dispatch<SetStateAction<ApplicationType[]>>,
-  setActive: Dispatch<SetStateAction<slugs | undefined>>,
   toggle = true,
 ) {
-  const updatedApp = allApplications;
-  updatedApp[currentId].isMinimized = toggle
-    ? !updatedApp[currentId].isMinimized
-    : true;
-  setActive(undefined);
-  setAllApplications([...updatedApp]);
+  setAllApplications((old) => {
+    old[currentId].isMinimized = toggle ? !old[currentId].isMinimized : true;
+    return old;
+  });
 }
 
 export function maximizeOne(

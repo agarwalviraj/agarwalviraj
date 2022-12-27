@@ -89,7 +89,6 @@ const MainContentProvider = ({ children }: { children: React.ReactNode }) => {
     });
     console.log(allApplications);
   };
-
   useEffect(() => {
     const updateMobile = () => {
       setOnMobile(window.innerWidth < 768);

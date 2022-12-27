@@ -1,8 +1,8 @@
-import { useMainStore } from "../store/MainStore";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { About, ContactMe, Projects, TechStack, Terminal } from "./sections";
+import { useMainStore } from "../store/MainStore";
+import { maximizeOne } from "../utils/actions";
 import { slugs } from "../utils/types";
-import { maximizeOne, minimize } from "../utils/actions";
+import { About, ContactMe, Projects, TechStack, Terminal } from "./sections";
 
 const Recents = () => {
   const { allApplications, active, setActive, setAllApplications, setRecents } =

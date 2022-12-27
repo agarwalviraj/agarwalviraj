@@ -47,13 +47,21 @@ const Terminal = () => {
 
   function eventHandler(e: KeyboardEvent) {
     if (e.key == "Enter") {
+      setCount((old) => {
+        return old + 1;
+      });
+
       e.preventDefault();
+
       setCurrentInputValue((old) => {
         Object.keys(commands).map((command) => {
           if (old.toLowerCase() === command.toLowerCase()) {
             if (typeof (commands as any)[command] === "function")
               (commands as any)[command]();
             else if ((commands as any)[command] >= 0) {
+              if (onMobile && (commands as any)[command] >= 0)
+                minimize(currentId, setAllApplications, false);
+
               toggleApp(
                 allApplications,
                 (commands as any)[command],
@@ -62,20 +70,11 @@ const Terminal = () => {
                 false,
               );
             }
-            if (onMobile && (commands as any)[command] >= 0)
-              minimize(
-                allApplications,
-                currentId,
-                setAllApplications,
-                setActive,
-                false,
-              );
           }
         });
 
         return "";
       });
-      setCount((old) => old + 1);
     }
   }
 

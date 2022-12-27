@@ -31,7 +31,8 @@ const Titlebar = ({ currentId, AppRef }: TitlebarProps) => {
             if (AppRef.current) {
               AppRef.current!.style.transitionProperty = "all";
               setTimeout(() => {
-                AppRef.current!.style.transitionProperty = "garbageValue";
+                if (AppRef.current)
+                  AppRef.current.style.transitionProperty = "garbageValue";
               }, 1000);
               maximize(
                 allApplications,
@@ -45,9 +46,7 @@ const Titlebar = ({ currentId, AppRef }: TitlebarProps) => {
 
         <FaRegWindowMinimize
           className="minimize"
-          onClick={() =>
-            minimize(allApplications, currentId, setAllApplications, setActive)
-          }
+          onClick={() => minimize(currentId, setAllApplications)}
         />
       </div>
       <span className="title">{allApplications[currentId].name}</span>
