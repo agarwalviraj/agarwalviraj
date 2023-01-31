@@ -59,8 +59,7 @@ const Terminal = () => {
             if (typeof (commands as any)[command] === "function")
               (commands as any)[command]();
             else if ((commands as any)[command] >= 0) {
-              if (onMobile && (commands as any)[command] >= 0)
-                minimize(currentId, setAllApplications, false);
+              if (onMobile) minimize(currentId, setAllApplications, false);
 
               toggleApp(
                 allApplications,
