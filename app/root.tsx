@@ -9,10 +9,18 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import styles from "./styles/global.css";
+import a from "../node_modules/swiper/swiper-bundle.min.css";
+import b from "../node_modules/swiper/modules/pagination.min.css";
 import MainContentProvider from "./store/MainStore";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
+  { rel: "stylesheet", href: a },
+  { rel: "stylesheet", href: b },
+  // {
+  //   rel: "stylesheet",
+  //   href: "https://cdn.jsdelivr.net/npm/swiper@11.0.4/swiper-bundle.min.css",
+  // },
   {
     rel: "icon",
     href: "/favicon.ico",

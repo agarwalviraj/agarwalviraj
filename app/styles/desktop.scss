@@ -207,6 +207,7 @@
       justify-content: center;
       text-align: center;
       margin: auto 0.2rem;
+      min-width: 80vw;
 
       .application {
         position: relative;
@@ -223,6 +224,11 @@
       }
     }
   }
+}
+
+.swiper-pagination-bullets {
+  display: none !important;
+  opacity: 0 !important;
 }
 
 @import "./applications.scss";

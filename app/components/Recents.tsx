@@ -1,14 +1,24 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, FreeMode } from "swiper/modules";
 import { useMainStore } from "../store/MainStore";
 import { maximizeOne } from "../utils/actions";
 import { slugs } from "../utils/types";
 import { About, ContactMe, Projects, TechStack, Terminal } from "./sections";
-
 const Recents = () => {
   const { allApplications, active, setActive, setAllApplications, setRecents } =
     useMainStore()!;
   return (
-    <Swiper className="recents" dir="rtl" navigation={false}>
+    <Swiper
+      className="recents"
+      modules={[Pagination]}
+      slidesPerView={"auto"}
+      centeredSlides={true}
+      rewind={true}
+      spaceBetween={5}
+      pagination={{
+        clickable: true,
+      }}
+    >
       {allApplications
         .filter((app) => app.isOpen)
         .map((application, key) => (
