@@ -1,0 +1,79 @@
+.projects {
+  .all-projects {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1.25rem;
+    padding: 2rem;
+
+    .project {
+      width: clamp(420px, 27%, 600px);
+      text-align: center;
+      background: #004055;
+      padding: 1rem;
+      border-radius: $window-border-radius;
+      cursor: pointer;
+      transition: transform 0.3s ease-out;
+
+      img {
+        border-radius: $window-border-radius;
+        max-height: 100%;
+        max-width: 100%;
+        margin: auto;
+        min-width: 100%;
+        min-height: 100%;
+      }
+      h4 {
+        color: black;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+.single-project {
+  .heading {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    svg {
+      cursor: pointer;
+    }
+  }
+  position: relative;
+  .image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    filter: blur(2px);
+    opacity: 0.7;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .description {
+    position: relative;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    z-index: 11;
+    max-width: 50rem;
+
+    h5 {
+      position: relative;
+      z-index: 10;
+      font-weight: 400;
+      line-height: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+}
