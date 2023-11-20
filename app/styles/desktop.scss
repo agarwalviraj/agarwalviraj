@@ -12,6 +12,8 @@
   background-image: url("/assets/wallpaper.png");
   background-size: cover;
   background-position: center;
+
+  overflow: hidden;
 }
 
 .launcher {
@@ -25,9 +27,11 @@
   transition: bottom 300ms ease-in-out;
   &.active {
     bottom: $taskbar-height;
+    scale: 1 1;
   }
   &.not-active {
     bottom: -100%;
+    scale: 0 0;
   }
 
   color: white;

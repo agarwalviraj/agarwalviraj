@@ -23,8 +23,8 @@ export const links: LinksFunction = () => [
   // },
   {
     rel: "icon",
-    href: "/favicon.ico",
-    type: "image/ico",
+    href: "/Logo.png",
+    type: "image/png",
   },
 ];
 

@@ -21,7 +21,7 @@ const Taskbar = () => {
       <div className="taskbar">
         <div className="taskbar-icons">
           <div className="app-launcher">
-            <img src="/Logo.svg" onClick={() => setAppLauncher(!appLauncher)} />
+            <img src="/Logo.png" onClick={() => setAppLauncher(!appLauncher)} />
           </div>
 
           {allApplications
