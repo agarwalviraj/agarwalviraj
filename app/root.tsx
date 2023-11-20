@@ -11,15 +11,24 @@ import {
 import styles from "./styles/global.css";
 import MainContentProvider from "./store/MainStore";
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
-
-export const meta: MetaFunction = () => [
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
   {
-    charset: "utf-8",
-    title: "Viraj Agarwal | Portfolio",
-    viewport: "width=device-width,initial-scale=1",
+    rel: "icon",
+    href: "/favicon.ico",
+    type: "image/ico",
   },
 ];
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Viraj Agarwal | Portfolio" },
+    {
+      property: "og:title",
+      content: "Portfolio of Viraj Agarwal",
+    },
+  ];
+};
 
 export default function App() {
   return (
