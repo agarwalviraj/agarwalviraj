@@ -5,13 +5,15 @@
   z-index: 15;
 
   position: absolute;
-  background-color: #0a192f;
+  background-color: #0f1318cb;
   border: 2px solid black;
 
   border-radius: $window-border-radius;
 
   display: flex;
   flex-direction: column;
+
+  backdrop-filter: blur(7px);
 
   .titlebar {
     cursor: move;
