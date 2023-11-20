@@ -92,6 +92,11 @@ const Terminal = () => {
       <div className="terminal">
         {[...Array(count)].map((_, i) => (
           <React.Fragment key={i}>
+            {i === 0 && (
+              <div>
+                Type "<i>help</i>" for list of available commands
+              </div>
+            )}
             <div className="command-line" ref={commandRef}>
               <DefaultPrompt />
               <input
