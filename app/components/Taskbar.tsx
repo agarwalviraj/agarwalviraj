@@ -17,7 +17,7 @@ const Taskbar = () => {
 
   return (
     <>
-      {appLauncher && <Launcher />}
+      <Launcher />
       <div className="taskbar">
         <div className="taskbar-icons">
           <div className="app-launcher">

@@ -7,10 +7,11 @@ const Launcher = () => {
     setAllApplications,
     active,
     setActive,
+    appLauncher,
     setAppLauncher,
   } = useMainStore()!;
   return (
-    <div className="launcher">
+    <div className={`launcher ${appLauncher ? "active" : "not-active"}`}>
       {allApplications.map((application, key) => (
         <div
           key={key}
