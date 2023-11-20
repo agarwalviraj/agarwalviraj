@@ -12,10 +12,11 @@ export function toggleApp(
     if (old[currentId].isMinimized) old[currentId].isMinimized = false;
     old[currentId].isOpen = toggle ? !old[currentId].isOpen : true;
     if (old[currentId].isOpen || !toggle) {
+      console.log({ slug: allApplications[currentId].slug });
+
       setActive(allApplications[currentId].slug);
     }
-    setAllApplications([...old]);
-    return old;
+    return [...old];
   });
 }
 

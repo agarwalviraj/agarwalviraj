@@ -22,7 +22,7 @@ const Terminal = () => {
     .replaceAll(",", "<br/>");
   allApps = allApps + "<br/>exit<br/>help ";
 
-  const commands = {
+  const commands: { [key: string]: number | (() => void) | undefined } = {
     about: 0,
     projects: 1,
     techstack: 2,
@@ -54,23 +54,18 @@ const Terminal = () => {
       e.preventDefault();
 
       setCurrentInputValue((old) => {
-        Object.keys(commands).map((command) => {
-          if (old.toLowerCase() === command.toLowerCase()) {
-            if (typeof (commands as any)[command] === "function")
-              (commands as any)[command]();
-            else if ((commands as any)[command] >= 0) {
-              if (onMobile) minimize(currentId, setAllApplications, false);
-
-              toggleApp(
-                allApplications,
-                (commands as any)[command],
-                setActive,
-                setAllApplications,
-                false,
-              );
-            }
-          }
-        });
+        const currentAction = commands[old.toLowerCase()];
+        if (typeof currentAction === "function") currentAction();
+        else if (typeof currentAction === "number" && currentAction >= 0) {
+          if (onMobile) minimize(currentId, setAllApplications, false);
+          toggleApp(
+            allApplications,
+            currentAction,
+            setActive,
+            setAllApplications,
+            false,
+          );
+        }
 
         return "";
       });

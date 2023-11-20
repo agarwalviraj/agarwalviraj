@@ -10,6 +10,7 @@ import {
 import { useMainStore } from "../store/MainStore";
 import { toggleApp } from "../utils/actions";
 import { slugs } from "../utils/types";
+import { useNavigate, useSearchParams } from "@remix-run/react";
 
 //System Tray
 //Task Manager
@@ -37,32 +38,29 @@ const Home = () => {
     [allApplications],
   );
 
-  // const router = useRouter();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // useEffect(() => {
-  //   if (router.isReady) {
-  //     const query = router.query?.apps;
-  //     const openApps =
-  //       typeof query == "string" ? query?.split(",").map((app) => app) : query;
+  useEffect(() => {
+    const query = searchParams.get("apps");
+    console.log({ query, running: true });
+    const openApps =
+      typeof query == "string" ? query?.split(",").map((app) => app) : query;
 
-  //     Object.keys(slugs).map((key, id) => {
-  //       if (openApps?.includes(key.toLowerCase())) {
-  //         toggleApp(allApplications, id, setActive, setAllApplications, false);
-  //       }
-  //     });
-  //   }
-  // }, [router.isReady]);
+    Object.keys(slugs).map((key, id) => {
+      if (openApps?.includes(key.toLowerCase())) {
+        toggleApp(allApplications, id, setActive, setAllApplications, false);
+      }
+    });
+  }, []);
 
-  // useEffect(() => {
-  //   if (router.isReady) {
-  //     const filtered = memoApp.app.filter((app) => app.isOpen);
-  //     const list = filtered.reduce(
-  //       (app, old) => `${app}${old.slug.toLocaleLowerCase()},`,
-  //       "",
-  //     );
-  //     router.push("/?apps=" + list, undefined, { shallow: true });
-  //   }
-  // }, [memoApp]);
+  useEffect(() => {
+    const filtered = memoApp.app.filter((app) => app.isOpen);
+    const list = filtered.reduce(
+      (app, old) => `${app}${old.slug.toLocaleLowerCase()},`,
+      "",
+    );
+    setSearchParams({ apps: list.toString() });
+  }, [memoApp]);
 
   useEffect(() => {
     setHydrated(true);
