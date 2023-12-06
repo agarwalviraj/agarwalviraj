@@ -63,7 +63,6 @@ export default function App() {
       posthog.init(data.env.POSTHOG_KEY, {
         api_host: data.env.POSTHOG_HOST,
         autocapture: true,
-        xhr_headers: { "Access-Control-Allow-Origin": "*" },
         loaded: () => {
           posthog.debug();
           setPosthogLoaded(true);
