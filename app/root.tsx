@@ -1,5 +1,9 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type {
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -7,20 +11,30 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
+  useLocation,
+  useSearchParams,
 } from "@remix-run/react";
 import styles from "./styles/global.css";
-import a from "../node_modules/swiper/swiper-bundle.min.css";
-import b from "../node_modules/swiper/modules/pagination.min.css";
+import swiper_1 from "../node_modules/swiper/swiper-bundle.min.css";
+import swiper_2 from "../node_modules/swiper/modules/pagination.min.css";
 import MainContentProvider from "./store/MainStore";
+import posthog from "posthog-js";
+import { useEffect, useState } from "react";
+
+export const loader: LoaderFunction = ({ context }) => {
+  return {
+    env: {
+      POSTHOG_KEY: (process.env as any)?.POSTHOG_KEY,
+      POSTHOG_HOST: (process.env as any)?.POSTHOG_HOST,
+    },
+  };
+};
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
-  { rel: "stylesheet", href: a },
-  { rel: "stylesheet", href: b },
-  // {
-  //   rel: "stylesheet",
-  //   href: "https://cdn.jsdelivr.net/npm/swiper@11.0.4/swiper-bundle.min.css",
-  // },
+  { rel: "stylesheet", href: swiper_1 },
+  { rel: "stylesheet", href: swiper_2 },
   {
     rel: "icon",
     href: "/Logo.png",
@@ -39,6 +53,33 @@ export const meta: MetaFunction = () => {
 };
 
 export default function App() {
+  const data = useLoaderData<any | null>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [posthogLoaded, setPosthogLoaded] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (data && data?.env?.POSTHOG_KEY && data?.env?.POSTHOG_HOST) {
+      posthog.init(data.env.POSTHOG_KEY, {
+        api_host: data.env.POSTHOG_HOST,
+        autocapture: true,
+        xhr_headers: { "Access-Control-Allow-Origin": "*" },
+        loaded: () => {
+          posthog.debug();
+          setPosthogLoaded(true);
+        },
+      });
+    }
+  }, [location]);
+
+  useEffect(() => {
+    console.log({ posthogLoaded });
+
+    if (posthogLoaded) {
+      posthog.capture("$pageview");
+    }
+  }, [posthogLoaded, location.pathname, searchParams.get("apps")?.toString()]);
+
   return (
     <html lang="en">
       <head>

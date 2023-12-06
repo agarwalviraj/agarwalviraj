@@ -42,7 +42,6 @@ const Home = () => {
 
   useEffect(() => {
     const query = searchParams.get("apps");
-    console.log({ query, running: true });
     const openApps =
       typeof query == "string" ? query?.split(",").map((app) => app) : query;
 
