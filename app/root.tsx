@@ -15,9 +15,9 @@ import {
   useLocation,
   useSearchParams,
 } from "@remix-run/react";
-import styles from "./styles/global.css";
-import swiper_1 from "../node_modules/swiper/swiper-bundle.min.css";
-import swiper_2 from "../node_modules/swiper/modules/pagination.min.css";
+import "./styles/global.scss";
+import "../node_modules/swiper/swiper-bundle.min.css";
+import "../node_modules/swiper/modules/pagination.min.css";
 import MainContentProvider from "./store/MainStore";
 import posthog from "posthog-js";
 import { useEffect, useState } from "react";
@@ -32,9 +32,6 @@ export const loader: LoaderFunction = ({ context }) => {
 };
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-  { rel: "stylesheet", href: swiper_1 },
-  { rel: "stylesheet", href: swiper_2 },
   {
     rel: "icon",
     href: "/Logo.png",
@@ -68,6 +65,7 @@ export default function App() {
           setPosthogLoaded(true);
         },
       });
+      posthog.identify();
     }
   }, [location]);
 
@@ -91,8 +89,8 @@ export default function App() {
         <MainContentProvider>
           <Outlet />
           <ScrollRestoration />
-          <Scripts />
           <LiveReload />
+          <Scripts />
         </MainContentProvider>
       </body>
     </html>
